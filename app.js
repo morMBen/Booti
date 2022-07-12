@@ -39,7 +39,7 @@ app.message('', async ({ message, say }) => {
   console.log(message);
 
   const temp = await app.client.users.info({ token: process.env.TOKEN, user: message.user });
-  console.log(temp);
+
   try {
     // await say({
     //   blocks: [
@@ -70,7 +70,7 @@ app.message('', async ({ message, say }) => {
 app.event('reaction_added', async ({ event, client }) => {
   try {
     console.log('event →', event);
-    console.log('client →', client);
+    // console.log('client →', clsient);
   } catch (e) {
     console.error(e);
   }
