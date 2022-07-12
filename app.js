@@ -1,7 +1,7 @@
 const { App, logLevel } = require('@slack/bolt');
 const express = require('express');
 const app2 = express();
-
+console.log(12345);
 app2.listen(5050, () => {
   console.log('listening to port ' + 5050);
 });
@@ -71,7 +71,6 @@ app.event('reaction_added', async ({ event, client }) => {
 });
 app.action('first_button', async ({ action, ack, say }) => {
   try {
-    // console.log(ack);
     await ack();
     await say('איזה גבר שאשכרה לחצת');
   } catch (e) {
