@@ -38,7 +38,7 @@ app.event('app_mention', async ({ event, client }) => {
 app.message('שווארמה', async ({ message, say }) => {
   console.log(message);
 
-  const temp = app.client.users.identity(message.user);
+  const temp = await app.client.users.identity(message.user);
   console.log(temp);
   try {
     await say({
