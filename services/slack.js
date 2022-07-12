@@ -1,6 +1,9 @@
 require('dotenv').config();
 const { App, logLevel } = require('@slack/bolt');
 const express = require('express');
+const Message = require('../models/message.js');
+const User = require('../models/user.js');
+const Reaction = require('../models/reaction.js');
 
 const app = new App({
   token: process.env.TOKEN,
@@ -8,25 +11,20 @@ const app = new App({
 });
 
 app.message('', async ({ message, say }) => {
-  console.log(message);
-  const temp = await app.client.users.info({ token: process.env.TOKEN, user: message.user });
-  const {
-    user: {
-      profile: {
-        real_name_normalized,
-        display_name,
-        display_name_normalized,
-        first_name,
-        last_name,
-      },
-    },
-  } = temp;
+  let user = await User.findOne({ slack_user_id: message.user });
 
-  console.log('first_name →', first_name);
-  console.log(' last_name →', last_name);
-  console.log('real_name_normalized →', real_name_normalized);
-  console.log('display_name →', display_name);
-  console.log('display_name_normalized →', display_name_normalized);
+  if (!user) {
+    const userData = await app.client.users.info({ token: process.env.TOKEN, user: message.user });
+    const {
+      user: {
+        profile: { display_name },
+      },
+    } = userData;
+
+    user = await new User({ slack_display_name: message.user, slack_user_id: message.user });
+  }
+
+  say(`thanks <@${user.slack_display_name}>`);
 
   try {
   } catch (e) {
