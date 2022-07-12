@@ -10,7 +10,19 @@ const app = new App({
 app.message('', async ({ message, say }) => {
   console.log(message);
   const temp = await app.client.users.info({ token: process.env.TOKEN, user: message.user });
-  console.log(temp);
+  const {
+    user: {
+      profile: { real_name_normalized, display_name, display_name_normalized },
+    },
+  } = temp;
+
+  console.log('first_name →', first_name);
+  console.log(' last_name →', last_name);
+  console.log('real_name_normalized →', real_name_normalized);
+  console.log('real_name_normalized →', real_name_normalized);
+  console.log('display_name →', display_name);
+  console.log('display_name_normalized →', display_name_normalized);
+
   try {
   } catch (e) {
     console.log(e);
