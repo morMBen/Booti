@@ -1,2 +1,2 @@
-require('./dbConnect');
-require('./services/slack');
+require('./dbConnect.js');
+require('./services/slack.js');
