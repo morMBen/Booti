@@ -35,7 +35,7 @@ app.event('app_mention', async ({ event, client }) => {
 
 //https://f744-2a02-ed0-6f2c-8c00-c0b7-e4db-58df-6011.eu.ngrok.io//slack/events
 
-app.message('שווארמה', async ({ message, say }) => {
+app.message('', async ({ message, say }) => {
   console.log(message);
 
   const temp = await app.client.users.info({ token: process.env.TOKEN, user: message.user });
@@ -69,7 +69,8 @@ app.message('שווארמה', async ({ message, say }) => {
 
 app.event('reaction_added', async ({ event, client }) => {
   try {
-    console.log(event);
+    console.log('event →', event);
+    console.log('client →', client);
   } catch (e) {
     console.error(e);
   }

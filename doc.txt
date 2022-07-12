@@ -1,2 +1,8 @@
-user name
-`${<@userid>}`
+user 
+message
+message id
+parent id
+
+reaction
+
+88c56cd0-10fe-4765-915d-7d27f47038e5
