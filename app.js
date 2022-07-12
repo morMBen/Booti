@@ -75,6 +75,15 @@ app.event('reaction_added', async ({ event, client }) => {
     console.error(e);
   }
 });
+app.event('reaction_removed', async ({ event, client }) => {
+  try {
+    console.log('event →', event);
+    // console.log('client →', clsient);
+  } catch (e) {
+    console.error(e);
+  }
+});
+
 app.action('first_button', async ({ action, ack, say }) => {
   try {
     await ack();
