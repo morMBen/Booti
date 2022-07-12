@@ -21,7 +21,7 @@ app.message('', async ({ message, say }) => {
       },
     } = userData;
 
-    user = await new User({ slack_display_name: message.user, slack_user_id: message.user });
+    user = await new User({ slack_display_name: display_name, slack_user_id: message.user });
   }
 
   say(`thanks <@${user.slack_display_name}>`);
