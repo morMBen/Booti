@@ -41,27 +41,27 @@ app.message('', async ({ message, say }) => {
   const temp = await app.client.users.info({ token: process.env.TOKEN, user: message.user });
   console.log(temp);
   try {
-    await say({
-      blocks: [
-        {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: `וואלה אני דואג לך <@${message.user}>, עליי...`,
-          },
-          accessory: {
-            type: 'button',
-            text: {
-              type: 'plain_text',
-              text: 'רק תלחץ פה',
-              emoji: true,
-            },
-            value: 'click_me_123',
-            action_id: 'first_button',
-          },
-        },
-      ],
-    });
+    // await say({
+    //   blocks: [
+    //     {
+    //       type: 'section',
+    //       text: {
+    //         type: 'mrkdwn',
+    //         text: `וואלה אני דואג לך <@${message.user}>, עליי...`,
+    //       },
+    //       accessory: {
+    //         type: 'button',
+    //         text: {
+    //           type: 'plain_text',
+    //           text: 'רק תלחץ פה',
+    //           emoji: true,
+    //         },
+    //         value: 'click_me_123',
+    //         action_id: 'first_button',
+    //       },
+    //     },
+    //   ],
+    // });
   } catch (e) {
     console.log(e);
   }
