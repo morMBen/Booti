@@ -5,3 +5,25 @@ parent id
 
 reaction
 
+
+
+user
+    slack_display_name
+    slack_user_id
+
+question    
+    text
+    slack_channel_id
+    slack_message_id
+    slack_user_id
+
+answer
+    text
+    slack_message_id
+    slack_reply_id
+    slack_user_id
+
+reaction
+    slack_item_id
+    slack_user_id
+

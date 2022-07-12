@@ -1,26 +1,11 @@
+require('dotenv').config();
 const { App, logLevel } = require('@slack/bolt');
 const express = require('express');
-const app2 = express();
 
-console.log(1234);
-
-app2.listen(5050, () => {
-  console.log('listening to port ' + 5050);
-});
-
-require('dotenv').config();
 const app = new App({
   token: process.env.TOKEN,
   signingSecret: process.env.SIGNIN_SECRET,
 });
-
-// https://099b-2a02-ed0-6f2c-8c00-e124-56f6-e10b-b6a0.eu.ngrok.io/slack/events
-
-//./node_modules/.bin/slack-verify --secret f9d0e6a487bcf452a5ffc350eba86645  --port=5000
-(async () => {
-  await app.start(5000);
-  console.log('* bolt app is running!');
-})();
 
 app.event('app_mention', async ({ event, client }) => {
   try {
@@ -133,3 +118,8 @@ app.shortcut('launch_shortcut', async ({ shortcut, ack, client }) => {
     console.error(e);
   }
 });
+
+(async () => {
+  await app.start(5000);
+  console.log('* bolt app is running!');
+})();
