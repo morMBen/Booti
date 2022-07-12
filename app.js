@@ -2,6 +2,8 @@ const { App, logLevel } = require('@slack/bolt');
 const express = require('express');
 const app2 = express();
 
+console.log('adslfaksjdfalsk');
+
 app2.listen(5050, () => {
   console.log('listening to port ' + 5050);
 });
