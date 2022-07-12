@@ -1,9 +1,9 @@
 require('dotenv').config();
 const { App, logLevel } = require('@slack/bolt');
 const express = require('express');
-const Message = require('../models/message.js');
+// const Message = require('../models/message.js');
 const User = require('../models/user.js');
-const Reaction = require('../models/reaction.js');
+// const Reaction = require('../models/reaction.js');
 
 const app = new App({
   token: process.env.TOKEN,
