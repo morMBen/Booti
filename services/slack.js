@@ -12,29 +12,28 @@ const app = new App({
 
 app.message('', async ({ message, say }) => {
   try {
-    // console.log(User);\
-    // const user = await new User({ slack_display_name: 'Bob', slack_user_id: 'ID' });
-    // user.save();
+    const user = await User.setUser(message.user, app);
+    console.log(user);
 
-    let user = await User.findOne({ slack_user_id: message.user });
-    const userData = await app.client.users.info({ token: process.env.TOKEN, user: message.user });
-    const {
-      user: {
-        profile: { display_name },
-      },
-    } = userData;
+    // try {
+    //   let user = await User.findOne({ slack_user_id: message.user });
+    //   const userData = await app.client.users.info({ token: process.env.TOKEN, user: message.user });
+    //   const {
+    //     user: {
+    //       profile: { display_name },
+    //     },
+    //   } = userData;
 
-    if (!user) {
-      user = await new User({ slack_display_name: display_name, slack_user_id: message.user });
-      await user.save();
-    } else {
-      await user.updateOne({
-        slack_display_name: display_name,
-        slack_user_id: message.user,
-      });
-    }
-
-    say(`thanks <@${user.slack_user_id}>`);
+    //   if (!user) {
+    //     user = await new User({ slack_display_name: display_name, slack_user_id: message.user });
+    //     await user.save();
+    //   } else {
+    //     await user.updateOne({
+    //       slack_display_name: display_name,
+    //       slack_user_id: message.user,
+    //     });
+    //   }
+    //   say(`thanks <@${user.slack_user_id}>`);
   } catch (e) {
     console.log(e);
   }
