@@ -12,8 +12,8 @@ const app = new App({
 });
 
 app.message('sa', async ({ message, say }) => {
-  // const temp = await app.client.conversations.list({ token: process.env.TOKEN });
-  // console.log(temp);
+  const temp = await app.client.conversations.list({ token: process.env.TOKEN });
+  console.log(temp);
   app.client.chat.postMessage({
     token: process.env.TOKEN,
     channel: 'C03PJDWV5Q9',
