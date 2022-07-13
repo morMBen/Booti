@@ -34,8 +34,8 @@ app.event('reaction_removed', async ({ event, client }) => {
     const reaction = await Reaction.findOne({
       slack_message_id: event.item.ts,
       type: event.reaction,
-    });
-    console.log('event added →', event);
+    }).remove();
+    // console.log('event added →', event);
     console.log('reaction →', reaction);
   } catch (e) {
     console.error(e);
