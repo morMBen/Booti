@@ -20,7 +20,7 @@ app.message('', async ({ message, say }) => {
       slack_channel_id: message.channel,
       slack_message_id: message.event_ts, //!! check letter
       slack_user: user._id,
-      slack_parent: oldMessage?._id || null,
+      slack_parent: (oldMessage && oldMessage._id) || null,
     });
     console.log(user);
   } catch (e) {
