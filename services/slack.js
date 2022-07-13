@@ -42,6 +42,7 @@ app.event('reaction_removed', async ({ event, client }) => {
 });
 app.event('reaction_added', async ({ event, client }) => {
   try {
+    console.log(event);
     const userData = await app.client.reactions.remove({
       token: process.env.TOKEN,
       name: 'white_check_mark',
