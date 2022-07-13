@@ -31,7 +31,7 @@ app.message('', async ({ message, say }) => {
 
 app.event('reaction_removed', async ({ event, client }) => {
   try {
-    const reaction = await Reaction.findOne({
+    const reaction = await Reaction.deleteOne({
       slack_message_id: event.item.ts,
       type: event.reaction,
     }).remove();
