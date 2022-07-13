@@ -9,11 +9,11 @@ const messageSchema = new mongoose.Schema({
     ref: 'User',
   },
   slack_parent: {
-    type: mongoose.Type.ObjectId,
+    type: mongoose.Type.slack_message_id,
     ref: 'Message',
   },
 });
 
 const Message = mongoose.model('messages', messageSchema);
 
-exports.module = Message;
+module.exports = Message;
