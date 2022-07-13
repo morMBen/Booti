@@ -16,15 +16,14 @@ app.message('', async ({ message, say }) => {
   // user.save();
 
   let user = await User.findOne({ slack_user_id: message.user });
+  const userData = await app.client.users.info({ token: process.env.TOKEN, user: message.user });
+  const {
+    user: {
+      profile: { display_name },
+    },
+  } = userData;
 
   if (!user) {
-    const userData = await app.client.users.info({ token: process.env.TOKEN, user: message.user });
-    const {
-      user: {
-        profile: { display_name },
-      },
-    } = userData;
-
     user = await new User({ slack_display_name: display_name, slack_user_id: message.user });
     await user.save();
   } else {
