@@ -25,8 +25,6 @@ userSchema.statics.setUser = async (id, app) => {
         slack_user_id: id,
       });
     }
-
-    say(`thanks <@${user.slack_user_id}>`);
     return user;
   } catch (e) {
     console.log(e);
