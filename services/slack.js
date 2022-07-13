@@ -12,31 +12,33 @@ const app = new App({
 });
 
 app.message('sa', async ({ message, say }) => {
-  app.client.conversations.list({ token: process.env.TOKEN });
+  const temp = app.client.conversations.list({ token: process.env.TOKEN });
+  console.log(temp);
   // app.client.chat.postMessage({
   //   token: process.env.TOKEN,
   //   channel: 'C03PJDWV5Q9',
   //   blocks: [{ type: 'section', text: { type: 'plain_text', text: 'Hello world' } }],
   // });
 });
-app.message('', async ({ message, say }) => {
-  try {
-    const user = await User.setUser(message.user, app);
-    const oldMessage = await Message.findOne({ slack_message_id: message.thread_ts });
 
-    const mes = await Message.create({
-      text: message.text,
-      slack_channel_id: message.channel,
-      slack_message_id: message.event_ts, //!! check letter
-      slack_user: user._id,
-      slack_parent: (oldMessage && oldMessage._id) || null,
-    });
-    console.log('message →', message);
-    console.log('mes from mongoose →', mes);
-  } catch (e) {
-    console.log(e);
-  }
-});
+// app.message('', async ({ message, say }) => {
+//   try {
+//     const user = await User.setUser(message.user, app);
+//     const oldMessage = await Message.findOne({ slack_message_id: message.thread_ts });
+
+//     const mes = await Message.create({
+//       text: message.text,
+//       slack_channel_id: message.channel,
+//       slack_message_id: message.event_ts, //!! check letter
+//       slack_user: user._id,
+//       slack_parent: (oldMessage && oldMessage._id) || null,
+//     });
+//     console.log('message →', message);
+//     console.log('mes from mongoose →', mes);
+//   } catch (e) {
+//     console.log(e);
+//   }
+// });
 
 app.event('reaction_removed', async ({ event, client }) => {
   try {
