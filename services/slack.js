@@ -12,8 +12,9 @@ const app = new App({
 });
 
 app.message('', async ({ message, say }) => {
-  user = await new User({ slack_display_name: 'Bob', slack_user_id: 'ID' });
-  user.save();
+  console.log(User);
+  // const user = await new User({ slack_display_name: 'Bob', slack_user_id: 'ID' });
+  // user.save();
 
   // let user = await User.find({ slack_user_id: message.user });
   // console.log(User);
