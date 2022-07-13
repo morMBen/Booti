@@ -4,6 +4,7 @@ const express = require('express');
 // const Message = require('../models/message.js');
 
 const { User } = require('../models/user.js');
+const User2 = require('../models/user.js');
 // const Reaction = require('../models/reaction.js');
 
 const app = new App({
@@ -13,6 +14,7 @@ const app = new App({
 
 app.message('', async ({ message, say }) => {
   console.log(User);
+  console.log(User2);
   // const user = await new User({ slack_display_name: 'Bob', slack_user_id: 'ID' });
   // user.save();
 
