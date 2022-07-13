@@ -31,8 +31,6 @@ userSchema.statics.setUser = async (id, app) => {
   }
 };
 
-// all kind of static or instances
-
 const User = mongoose.model('users', userSchema);
 
 module.exports = User;

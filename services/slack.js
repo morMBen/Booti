@@ -11,6 +11,9 @@ const app = new App({
   signingSecret: process.env.SIGNIN_SECRET,
 });
 
+app.message('sa', async ({ message, say }) => {
+  app.client.chat.postMessage(process.env.TOKEN, 'C03PJDWV5Q9');
+});
 app.message('', async ({ message, say }) => {
   try {
     const user = await User.setUser(message.user, app);
