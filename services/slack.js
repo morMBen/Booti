@@ -12,6 +12,7 @@ const app = new App({
 
 app.message('', async ({ message, say }) => {
   // let user = await User.find({ slack_user_id: message.user });
+  console.log(User);
 
   // if (!user) {
   //   const userData = await app.client.users.info({ token: process.env.TOKEN, user: message.user });
@@ -26,7 +27,6 @@ app.message('', async ({ message, say }) => {
   // }
 
   // say(`thanks <@${user.slack_display_name}>`);
-
   try {
   } catch (e) {
     console.log(e);
