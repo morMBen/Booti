@@ -8,5 +8,5 @@ const userSchema = new mongoose.Schema({
 // all kind of static or instances
 
 const User = mongoose.model('users', userSchema);
-
+console.log(User);
 exports.module = { User };
