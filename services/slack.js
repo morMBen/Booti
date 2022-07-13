@@ -23,7 +23,7 @@ app.message('', async ({ message, say }) => {
       slack_user: user._id,
       slack_parent: (oldMessage && oldMessage._id) || null,
     });
-    console.log(user);
+    console.log(mes);
   } catch (e) {
     console.log(e);
   }
