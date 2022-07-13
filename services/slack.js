@@ -27,6 +27,9 @@ app.message('', async ({ message, say }) => {
 
     user = await new User({ slack_display_name: display_name, slack_user_id: message.user });
     await user.save();
+  } else {
+    user = await user.updateOne({ slack_display_name: display_name, slack_user_id: message.user });
+    await user.save();
   }
   console.log(user);
   say(`thanks <@${user.slack_user_id}>`);
