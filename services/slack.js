@@ -29,15 +29,15 @@ app.message('', async ({ message, say }) => {
   }
 });
 
+// app.event('reaction_added', async ({ event, client }) => {
+//   try {
+//     console.log('event →', event);
+//     // console.log('client →', clsient);
+//   } catch (e) {
+//     console.error(e);
+//   }
+// });
 app.event('reaction_added', async ({ event, client }) => {
-  try {
-    console.log('event →', event);
-    // console.log('client →', clsient);
-  } catch (e) {
-    console.error(e);
-  }
-});
-app.event('reaction_removed', async ({ event, client }) => {
   try {
     const sender = await User.setUser(event.user, app);
     const receiver = await User.setUser(event.item_user, app);
@@ -51,6 +51,7 @@ app.event('reaction_removed', async ({ event, client }) => {
       message,
     });
     console.log('reaction →', reaction);
+    reaction;
   } catch (e) {
     console.error(e);
   }
