@@ -44,7 +44,7 @@ app.event('reaction_removed', async ({ event, client }) => {
 app.event('reaction_added', async ({ event, client }) => {
   try {
     const userData = await app.client.reactions.remove({
-      token: 'xoxp-3789633629060-3784302343109-3793558423634-34cca25a47f3f70f21101c7e1bbae6c9',
+      token: '',
       name: 'white_check_mark',
       timestamp: '1657710055.800669',
       channel: 'C03PJDWV5Q9',
