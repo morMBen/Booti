@@ -13,12 +13,14 @@ const app = new App({
 app.message('', async ({ message, say }) => {
   try {
     const user = await User.setUser(message.user, app);
+    const oldMessage = await Message.findOne({ slack_message_id: message.thread_ts });
+
     const mes = await Message.create({
       text: message.text,
       slack_channel_id: message.channel,
       slack_message_id: message.event_ts, //!! check letter
       slack_user: user._id,
-      slack_parent: message.thread_ts || null,
+      slack_parent: oldMessage?._id || null,
     });
     console.log(user);
   } catch (e) {
