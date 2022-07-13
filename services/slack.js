@@ -16,7 +16,6 @@ app.message('', async ({ message, say }) => {
   // user.save();
 
   let user = await User.find({ slack_user_id: message.user });
-  console.log(User);
 
   if (!user) {
     const userData = await app.client.users.info({ token: process.env.TOKEN, user: message.user });
@@ -30,7 +29,7 @@ app.message('', async ({ message, say }) => {
     user.save();
   }
 
-  say(`thanks <@${user.slack_display_name}>`);
+  say(`thanks <@${user.slack_user_id}>`);
   try {
   } catch (e) {
     console.log(e);
