@@ -12,7 +12,11 @@ const app = new App({
 });
 
 app.message('sa', async ({ message, say }) => {
-  app.client.chat.postMessage({ token: process.env.TOKEN, channel: 'C03PJDWV5Q9' });
+  app.client.chat.postMessage({
+    token: process.env.TOKEN,
+    channel: 'C03PJDWV5Q9',
+    blocks: [{ type: 'section', text: { type: 'plain_text', text: 'Hello world' } }],
+  });
 });
 app.message('', async ({ message, say }) => {
   try {
