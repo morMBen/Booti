@@ -46,7 +46,7 @@ app.event('reaction_added', async ({ event, client }) => {
     const userData = await app.client.reactions.remove({
       token: process.env.TOKEN,
       name: 'white_check_mark',
-      timestamp: '1657707007.018500',
+      timestamp: '1657707317.512049',
     });
     //   const sender = await User.setUser(event.user, app);
     //   const oldReactionToSame = await Reaction.findOne({
