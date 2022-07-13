@@ -11,21 +11,21 @@ const app = new App({
 });
 
 app.message('', async ({ message, say }) => {
-  let user = await User.find({ slack_user_id: message.user });
+  // let user = await User.find({ slack_user_id: message.user });
 
-  if (!user) {
-    const userData = await app.client.users.info({ token: process.env.TOKEN, user: message.user });
-    const {
-      user: {
-        profile: { display_name },
-      },
-    } = userData;
+  // if (!user) {
+  //   const userData = await app.client.users.info({ token: process.env.TOKEN, user: message.user });
+  //   const {
+  //     user: {
+  //       profile: { display_name },
+  //     },
+  //   } = userData;
 
-    user = await new User({ slack_display_name: display_name, slack_user_id: message.user });
-    user.save();
-  }
+  //   user = await new User({ slack_display_name: display_name, slack_user_id: message.user });
+  //   user.save();
+  // }
 
-  say(`thanks <@${user.slack_display_name}>`);
+  // say(`thanks <@${user.slack_display_name}>`);
 
   try {
   } catch (e) {
