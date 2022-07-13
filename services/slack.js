@@ -42,35 +42,37 @@ app.event('reaction_removed', async ({ event, client }) => {
 });
 app.event('reaction_added', async ({ event, client }) => {
   try {
-    console.log(event);
-    const userData = await app.client.reactions.remove({
-      token: process.env.TOKEN,
-      name: 'white_check_mark',
-      timestamp: '1657707317.512049',
+    // const userData = await app.client.reactions.remove({
+    //   token: process.env.TOKEN,
+    //   name: 'white_check_mark',
+    //   timestamp: '1657707317.512049',
+    // });
+
+    const sender = await User.setUser(event.user, app);
+    // const oldReactionToSame = await Reaction.findOne({
+    //   slack_message_id: event.item.ts,
+    //   sender,
+    // });
+
+    // console.log(oldReactionToSame);
+
+    // if (!oldReactionToSame) {
+    const receiver = await User.setUser(event.item_user, app);
+    const message = await Message.findOne({ slack_message_id: event.item.ts });
+    const reaction_id = event.event_ts;
+    const reaction = await Reaction.create({
+      reaction_id,
+      type: event.reaction,
+      sender,
+      receiver,
+      message,
     });
-    //   const sender = await User.setUser(event.user, app);
-    //   const oldReactionToSame = await Reaction.findOne({
-    //     slack_message_id: event.item.ts,
-    //     sender,
-    //   });
-    //   console.log(oldReactionToSame);
-    //   if (!oldReactionToSame) {
-    //     const receiver = await User.setUser(event.item_user, app);
-    //     const message = await Message.findOne({ slack_message_id: event.item.ts });
-    //     const reaction_id = event.event_ts;
-    //     const reaction = await Reaction.create({
-    //       reaction_id,
-    //       type: event.reaction,
-    //       sender,
-    //       receiver,
-    //       message,
-    //     });
-    //   } else {
-    //     // remove reaction here
-    //     // throw Error('All ready got a reaction to this message');
-    //   }
-    // console.log('reaction →', reaction);
-    // console.log('event added →', event);
+    // } else {
+    //    remove reaction here
+    // throw Error('All ready got a reaction to this message');
+    // }
+    console.log('reaction →', reaction);
+    console.log('event added →', event);
   } catch (e) {
     console.error(e);
   }
