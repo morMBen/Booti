@@ -16,7 +16,7 @@ app.message('sa', async ({ message, say }) => {
   // console.log(temp);
   app.client.chat.postMessage({
     token: process.env.TOKEN,
-    channel: 'C03P7JMKDFE',
+    channel: message.user,
     blocks: [{ type: 'section', text: { type: 'plain_text', text: 'Hello world' } }],
   });
 });
