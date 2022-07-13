@@ -48,8 +48,6 @@ app.event('reaction_added', async ({ event, client }) => {
       sender,
     });
 
-    // console.log(oldReactionToSame);
-
     const receiver = await User.setUser(event.item_user, app);
     const message = await Message.findOne({ slack_message_id: event.item.ts });
     const reaction_id = event.event_ts;
@@ -61,6 +59,7 @@ app.event('reaction_added', async ({ event, client }) => {
       message,
     });
     if (oldReactionToSame) {
+      console.log(oldReactionToSame);
       const userData = await app.client.reactions.remove({
         token: process.env.TOKEN,
         name: oldReactionToSame.type,
