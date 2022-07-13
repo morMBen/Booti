@@ -43,10 +43,10 @@ app.event('reaction_removed', async ({ event, client }) => {
 app.event('reaction_added', async ({ event, client }) => {
   try {
     const sender = await User.setUser(event.user, app);
-    // const oldReactionToSame = await Reaction.findOne({
-    //   slack_message_id: event.item.ts,
-    //   sender,
-    // });
+    const oldReactionToSame = await Reaction.findOne({
+      slack_message_id: event.item.ts,
+      sender,
+    });
 
     // console.log(oldReactionToSame);
 
@@ -64,8 +64,8 @@ app.event('reaction_added', async ({ event, client }) => {
 
     const userData = await app.client.reactions.remove({
       token: process.env.TOKEN,
-      name: event.reaction,
-      timestamp: event.ts,
+      name: oldReactionToSame.type,
+      timestamp: oldReactionToSame.reaction_id,
     });
     // } else {
     //    remove reaction here
