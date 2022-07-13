@@ -15,7 +15,7 @@ const app = new App({
 app.message('', async ({ message, say }) => {
   console.log(User);
   console.log(User2);
-  console.log(User2.module);
+  console.log(User2.module.find);
   console.log(User2.find);
   // const user = await new User({ slack_display_name: 'Bob', slack_user_id: 'ID' });
   // user.save();
