@@ -1,17 +1,20 @@
 const mongoose = require('mongoose');
 
 const reactionSchema = new mongoose.Schema({
-  reaction_id: 'string',
-  type: 'string',
+  reaction_id: 'string', //* event_ts
+  type: 'string', //* reaction
   sender: {
+    //* user
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
   receiver: {
+    //* item_user
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
   message: {
+    //* ts → ObjectId
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Message',
   },

@@ -12,6 +12,7 @@ const messageSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Message',
   },
+  
 });
 
 const Message = mongoose.model('messages', messageSchema);

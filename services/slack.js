@@ -4,6 +4,7 @@ const express = require('express');
 const Message = require('../models/message.js');
 
 const User = require('../models/user.js');
+const Reaction = require('../models/reaction.js');
 
 const app = new App({
   token: process.env.TOKEN,
@@ -38,8 +39,18 @@ app.event('reaction_added', async ({ event, client }) => {
 });
 app.event('reaction_removed', async ({ event, client }) => {
   try {
-    console.log('event →', event);
-    // console.log('client →', clsient);
+    const sender = await User.setUser(event.user, app);
+    const receiver = await User.setUser(event.item_user, app);
+    const message = await Message.findOne({ slack_message_id: event.item.ts });
+    const reaction_id = event.event_ts;
+    const reaction = await Reaction.create({
+      reaction_id,
+      type: event.reaction,
+      sender,
+      receiver,
+      message,
+    });
+    console.log('reaction →', reaction);
   } catch (e) {
     console.error(e);
   }
