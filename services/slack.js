@@ -43,41 +43,20 @@ app.event('reaction_removed', async ({ event, client }) => {
 });
 app.event('reaction_added', async ({ event, client }) => {
   try {
-    const userData = await app.client.reactions.remove({
-      token: '',
-      name: 'white_check_mark',
-      timestamp: '1657710055.800669',
-      channel: 'C03PJDWV5Q9',
-      user: 'U03P28WA337',
+    const sender = await User.setUser(event.user, app);
+    const receiver = await User.setUser(event.item_user, app);
+    const message = await Message.findOne({ slack_message_id: event.item.ts });
+    const reaction_id = event.event_ts;
+    const reaction = await Reaction.create({
+      reaction_id,
+      type: event.reaction,
+      sender,
+      receiver,
+      message,
     });
   } catch (e) {
-    console.dir(e);
+    console.error(e);
   }
-  // try {
-  //   const sender = await User.setUser(event.user, app);
-  //   const oldReactionToSame = await Reaction.findOne({
-  //     slack_message_id: event.item.ts,
-  //     sender,
-  //   });
-  //   const receiver = await User.setUser(event.item_user, app);
-  //   const message = await Message.findOne({ slack_message_id: event.item.ts });
-  //   const reaction_id = event.event_ts;
-  //   const reaction = await Reaction.create({
-  //     reaction_id,
-  //     type: event.reaction,
-  //     sender,
-  //     receiver,
-  //     message,
-  //   });
-  //   if (oldReactionToSame) {
-  //     console.log(oldReactionToSame);
-  //     console.log(message);
-  //   }
-  //   console.log('reaction →', reaction);
-  //   console.log('event added →', event);
-  // } catch (e) {
-  //   console.error(e);
-  // }
 });
 
 (async () => {
