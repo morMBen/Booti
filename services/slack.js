@@ -26,7 +26,7 @@ app.message('', async ({ message, say }) => {
     console.log('message →', message);
     console.log('mes from mongoose →', mes);
   } catch (e) {
-    console.log(e.message.data);
+    console.log(e);
   }
 });
 
@@ -42,13 +42,17 @@ app.event('reaction_removed', async ({ event, client }) => {
   }
 });
 app.event('reaction_added', async ({ event, client }) => {
-  const userData = await app.client.reactions.remove({
-    token: process.env.TOKEN,
-    name: 'white_check_mark',
-    timestamp: '1657710055.800669',
-    channel: 'C03PJDWV5Q9',
-    user: 'U03P28WA337',
-  });
+  try {
+    const userData = await app.client.reactions.remove({
+      token: process.env.TOKEN,
+      name: 'white_check_mark',
+      timestamp: '1657710055.800669',
+      channel: 'C03PJDWV5Q9',
+      user: 'U03P28WA337',
+    });
+  } catch (e) {
+    console.log(e.message);
+  }
   // try {
   //   const sender = await User.setUser(event.user, app);
   //   const oldReactionToSame = await Reaction.findOne({
