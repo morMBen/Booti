@@ -42,12 +42,6 @@ app.event('reaction_removed', async ({ event, client }) => {
 });
 app.event('reaction_added', async ({ event, client }) => {
   try {
-    // const userData = await app.client.reactions.remove({
-    //   token: process.env.TOKEN,
-    //   name: 'white_check_mark',
-    //   timestamp: '1657707317.512049',
-    // });
-
     const sender = await User.setUser(event.user, app);
     // const oldReactionToSame = await Reaction.findOne({
     //   slack_message_id: event.item.ts,
@@ -66,6 +60,12 @@ app.event('reaction_added', async ({ event, client }) => {
       sender,
       receiver,
       message,
+    });
+
+    const userData = await app.client.reactions.remove({
+      token: process.env.TOKEN,
+      name: event.reaction,
+      timestamp: event.ts,
     });
     // } else {
     //    remove reaction here
