@@ -33,9 +33,8 @@ app.message('', async ({ message, say }) => {
         slack_user_id: message.user,
       });
     }
-    console.log(user);
-    console.log(user.slack_user_id);
-    // say(`thanks <@${user.slack_user_id}>`);
+
+    say(`thanks <@${user.slack_user_id}>`);
   } catch (e) {
     console.log(e);
   }
