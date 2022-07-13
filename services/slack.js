@@ -35,7 +35,6 @@ app.event('reaction_removed', async ({ event, client }) => {
       slack_message_id: event.item.ts,
       type: event.reaction,
     });
-    // console.log('event added →', event);
     console.log('reaction →', reaction);
   } catch (e) {
     console.error(e);
@@ -43,20 +42,26 @@ app.event('reaction_removed', async ({ event, client }) => {
 });
 app.event('reaction_added', async ({ event, client }) => {
   try {
-    const sender = await User.setUser(event.user, app);
-    const receiver = await User.setUser(event.item_user, app);
-    const message = await Message.findOne({ slack_message_id: event.item.ts });
-    const reaction_id = event.event_ts;
-    const reaction = await Reaction.create({
-      reaction_id,
-      type: event.reaction,
-      sender,
-      receiver,
-      message,
+    const oldReactionToSame = await Reaction.findOne({
+      slack_message_id: event.item.ts,
+      sender: event.user,
     });
-    console.log('reaction →', reaction);
-    console.log('event added →', event);
-    reaction;
+    console.log(oldReactionToSame);
+    if (!oldReactionToSame) {
+      const sender = await User.setUser(event.user, app);
+      const receiver = await User.setUser(event.item_user, app);
+      const message = await Message.findOne({ slack_message_id: event.item.ts });
+      const reaction_id = event.event_ts;
+      const reaction = await Reaction.create({
+        reaction_id,
+        type: event.reaction,
+        sender,
+        receiver,
+        message,
+      });
+    }
+    // console.log('reaction →', reaction);
+    // console.log('event added →', event);
   } catch (e) {
     console.error(e);
   }
