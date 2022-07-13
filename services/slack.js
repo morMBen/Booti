@@ -60,10 +60,11 @@ app.event('reaction_added', async ({ event, client }) => {
     });
     if (oldReactionToSame) {
       console.log(oldReactionToSame);
+      console.log(message);
       const userData = await app.client.reactions.remove({
         token: process.env.TOKEN,
         name: oldReactionToSame.type,
-        timestamp: oldReactionToSame.reaction_id,
+        timestamp: message.slack_message_id,
         channel: message.slack_channel_id,
       });
     }
