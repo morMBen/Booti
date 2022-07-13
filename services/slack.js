@@ -12,7 +12,7 @@ const app = new App({
 });
 
 app.message('sa', async ({ message, say }) => {
-  app.client.chat.postMessage(process.env.TOKEN, 'C03PJDWV5Q9');
+  app.client.chat.postMessage({process.env.TOKEN, 'C03PJDWV5Q9'});
 });
 app.message('', async ({ message, say }) => {
   try {
