@@ -31,7 +31,11 @@ app.message('', async ({ message, say }) => {
 
 app.event('reaction_removed', async ({ event, client }) => {
   try {
-    console.log('event →', event);
+    // const reaction = await Reaction.findOne({
+    //   reaction_id,
+    //   type: event.reaction,
+    // });
+    console.log('event added →', event);
     // console.log('client →', clsient);
   } catch (e) {
     console.error(e);
@@ -51,6 +55,7 @@ app.event('reaction_added', async ({ event, client }) => {
       message,
     });
     console.log('reaction →', reaction);
+    console.log('event added →', event);
     reaction;
   } catch (e) {
     console.error(e);
