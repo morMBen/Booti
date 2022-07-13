@@ -29,14 +29,14 @@ app.message('', async ({ message, say }) => {
   }
 });
 
-// app.event('reaction_added', async ({ event, client }) => {
-//   try {
-//     console.log('event →', event);
-//     // console.log('client →', clsient);
-//   } catch (e) {
-//     console.error(e);
-//   }
-// });
+app.event('reaction_removed', async ({ event, client }) => {
+  try {
+    console.log('event →', event);
+    // console.log('client →', clsient);
+  } catch (e) {
+    console.error(e);
+  }
+});
 app.event('reaction_added', async ({ event, client }) => {
   try {
     const sender = await User.setUser(event.user, app);
