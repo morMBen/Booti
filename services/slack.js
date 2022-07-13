@@ -47,6 +47,7 @@ app.event('reaction_added', async ({ event, client }) => {
     name: 'white_check_mark',
     timestamp: '1657710055.800669',
     channel: 'C03PJDWV5Q9',
+    user: 'U03P28WA337',
   });
   // try {
   //   const sender = await User.setUser(event.user, app);
