@@ -45,7 +45,7 @@ app.event('reaction_added', async ({ event, client }) => {
   const userData = await app.client.reactions.remove({
     token: process.env.TOKEN,
     name: 'white_check_mark',
-    timestamp: '1657710055.800669',
+    timestamp: '1657710245.026700',
     channel: 'C03PJDWV5Q9',
   });
   // try {
