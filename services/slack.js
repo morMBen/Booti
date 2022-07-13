@@ -60,6 +60,11 @@ app.event('reaction_added', async ({ event, client }) => {
         message,
       });
     } else {
+      const userData = await app.client.reactions.remove({
+        token: process.env.TOKEN,
+        name: oldReactionToSame.type,
+        timestamp: oldReactionToSame.reaction_id,
+      });
       // remove reaction here
       // throw Error('All ready got a reaction to this message');
     }
