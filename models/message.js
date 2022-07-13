@@ -9,7 +9,7 @@ const messageSchema = new mongoose.Schema({
     ref: 'User',
   },
   slack_parent: {
-    type: mongoose.Type.slack_message_id,
+    type: mongoose.Schema.Types.slack_message_id,
     ref: 'Message',
   },
 });
