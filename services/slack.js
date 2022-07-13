@@ -51,7 +51,7 @@ app.event('reaction_added', async ({ event, client }) => {
       user: 'U03P28WA337',
     });
   } catch (e) {
-    console.dir(e.data.response_metadata);
+    console.dir(e);
   }
   // try {
   //   const sender = await User.setUser(event.user, app);
