@@ -50,7 +50,6 @@ app.event('reaction_added', async ({ event, client }) => {
 
     // console.log(oldReactionToSame);
 
-    // if (!oldReactionToSame) {
     const receiver = await User.setUser(event.item_user, app);
     const message = await Message.findOne({ slack_message_id: event.item.ts });
     const reaction_id = event.event_ts;
@@ -61,13 +60,14 @@ app.event('reaction_added', async ({ event, client }) => {
       receiver,
       message,
     });
-
-    const userData = await app.client.reactions.remove({
-      token: process.env.TOKEN,
-      name: oldReactionToSame.type,
-      timestamp: oldReactionToSame.reaction_id,
-      channel: message.slack_channel_id,
-    });
+    if (oldReactionToSame) {
+      const userData = await app.client.reactions.remove({
+        token: process.env.TOKEN,
+        name: oldReactionToSame.type,
+        timestamp: oldReactionToSame.reaction_id,
+        channel: message.slack_channel_id,
+      });
+    }
     // } else {
     //    remove reaction here
     // throw Error('All ready got a reaction to this message');
