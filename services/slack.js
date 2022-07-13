@@ -42,42 +42,38 @@ app.event('reaction_removed', async ({ event, client }) => {
   }
 });
 app.event('reaction_added', async ({ event, client }) => {
-  try {
-    const sender = await User.setUser(event.user, app);
-    const oldReactionToSame = await Reaction.findOne({
-      slack_message_id: event.item.ts,
-      sender,
-    });
-
-    const receiver = await User.setUser(event.item_user, app);
-    const message = await Message.findOne({ slack_message_id: event.item.ts });
-    const reaction_id = event.event_ts;
-    const reaction = await Reaction.create({
-      reaction_id,
-      type: event.reaction,
-      sender,
-      receiver,
-      message,
-    });
-    if (oldReactionToSame) {
-      console.log(oldReactionToSame);
-      console.log(message);
-      const userData = await app.client.reactions.remove({
-        token: process.env.TOKEN,
-        name: oldReactionToSame.type,
-        timestamp: message.slack_message_id,
-        channel: message.slack_channel_id,
-      });
-    }
-    // } else {
-    //    remove reaction here
-    // throw Error('All ready got a reaction to this message');
-    // }
-    console.log('reaction →', reaction);
-    console.log('event added →', event);
-  } catch (e) {
-    console.error(e);
-  }
+  console.log(event);
+  // try {
+  //   const sender = await User.setUser(event.user, app);
+  //   const oldReactionToSame = await Reaction.findOne({
+  //     slack_message_id: event.item.ts,
+  //     sender,
+  //   });
+  //   const receiver = await User.setUser(event.item_user, app);
+  //   const message = await Message.findOne({ slack_message_id: event.item.ts });
+  //   const reaction_id = event.event_ts;
+  //   const reaction = await Reaction.create({
+  //     reaction_id,
+  //     type: event.reaction,
+  //     sender,
+  //     receiver,
+  //     message,
+  //   });
+  //   if (oldReactionToSame) {
+  //     console.log(oldReactionToSame);
+  //     console.log(message);
+  //     const userData = await app.client.reactions.remove({
+  //       token: process.env.TOKEN,
+  //       name: oldReactionToSame.type,
+  //       timestamp: message.slack_message_id,
+  //       channel: message.slack_channel_id,
+  //     });
+  //   }
+  //   console.log('reaction →', reaction);
+  //   console.log('event added →', event);
+  // } catch (e) {
+  //   console.error(e);
+  // }
 });
 
 (async () => {
