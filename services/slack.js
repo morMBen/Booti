@@ -66,7 +66,7 @@ app.event('reaction_added', async ({ event, client }) => {
       token: process.env.TOKEN,
       name: oldReactionToSame.type,
       timestamp: oldReactionToSame.reaction_id,
-      channel: message.channel,
+      channel: message.slack_channel_id,
     });
     // } else {
     //    remove reaction here
