@@ -12,7 +12,7 @@ const app = new App({
 });
 
 app.message('sa', async ({ message, say }) => {
-  const temp = app.client.conversations.list({ token: process.env.TOKEN });
+  const temp = await app.client.conversations.list({ token: process.env.TOKEN });
   console.log(temp);
   // app.client.chat.postMessage({
   //   token: process.env.TOKEN,
