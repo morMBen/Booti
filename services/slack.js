@@ -42,13 +42,13 @@ app.event('reaction_removed', async ({ event, client }) => {
 });
 app.event('reaction_added', async ({ event, client }) => {
   try {
+    const sender = await User.setUser(event.user, app);
     const oldReactionToSame = await Reaction.findOne({
       slack_message_id: event.item.ts,
-      sender: event.user,
+      sender,
     });
     console.log(oldReactionToSame);
     if (!oldReactionToSame) {
-      const sender = await User.setUser(event.user, app);
       const receiver = await User.setUser(event.item_user, app);
       const message = await Message.findOne({ slack_message_id: event.item.ts });
       const reaction_id = event.event_ts;
@@ -59,6 +59,8 @@ app.event('reaction_added', async ({ event, client }) => {
         receiver,
         message,
       });
+    } else {
+      throw Error('All ready got a reaction to this message');
     }
     // console.log('reaction →', reaction);
     // console.log('event added →', event);
