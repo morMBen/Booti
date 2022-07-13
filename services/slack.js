@@ -60,7 +60,8 @@ app.event('reaction_added', async ({ event, client }) => {
         message,
       });
     } else {
-      throw Error('All ready got a reaction to this message');
+      // remove reaction here
+      // throw Error('All ready got a reaction to this message');
     }
     // console.log('reaction →', reaction);
     // console.log('event added →', event);
