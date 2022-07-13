@@ -26,7 +26,7 @@ app.message('', async ({ message, say }) => {
     console.log('message →', message);
     console.log('mes from mongoose →', mes);
   } catch (e) {
-    console.log(e);
+    console.log(e.message.data);
   }
 });
 
