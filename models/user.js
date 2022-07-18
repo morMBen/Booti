@@ -1,5 +1,6 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
+const Reaction = require('./reaction');
 
 const userSchema = new mongoose.Schema({
   slack_display_name: 'string',
@@ -30,6 +31,11 @@ userSchema.statics.setUser = async (id, app) => {
     console.log(e);
   }
 };
+
+userSchema.virtual('right_answers').get(async function () {
+  console.log(this);
+  return await Reaction.count({ receiver: this._id, type: '' });
+});
 
 const User = mongoose.model('users', userSchema);
 

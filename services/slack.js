@@ -55,7 +55,17 @@ app.event('reaction_added', async ({ event, client }) => {
     const receiver = await User.setUser(event.item_user, app);
     const message = await Message.findOne({ slack_message_id: event.item.ts });
     const reaction_id = event.event_ts;
+
+    const getCurrentUser = async () => {
+      let mes = message;
+      if (message.slack_parent) {
+        mes = await message.populate('slack_parent').slack_parent;
+      }
+      return await mes.populate('slack_user');
+    };
+
     const reaction = await Reaction.create({
+      parent_user: await getCurrentUser().slack_user,
       reaction_id,
       type: event.reaction,
       sender,

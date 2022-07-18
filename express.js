@@ -1,13 +1,20 @@
 const express = require('express');
-
+const path = require('path');
+const cors = require('cors');
 const app = express();
+const route = require('./routers/index');
+const port = process.env.PORT || 8000;
+const publicDirectoryPath = path.join(__dirname, 'client/build');
 
 app.use(express.json());
-app.use(express.urlencoded());
-// app.get('/', (req, res) => {
-//   res.send('<h1>Hello</h1>');
-// });
+app.use(cors());
+app.use(express.static(publicDirectoryPath));
+app.use('/api', route);
 
-app.listen(8000, () => {
-  console.log('listen to port -> ', 8000);
+app.get('*', (req, res) => {
+  req.sendFile(path.resolve(publicDirectoryPath, 'index.html'));
+});
+
+app.listen(port, () => {
+  console.log('listen to port -> ', port);
 });

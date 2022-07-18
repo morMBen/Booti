@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 const reactionSchema = new mongoose.Schema({
   reaction_id: 'string', //* event_ts
   type: 'string', //* reaction
+  parent_user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
   sender: {
     //* user
     type: mongoose.Schema.Types.ObjectId,
