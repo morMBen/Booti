@@ -1,3 +1,3 @@
 require('./dbConnect.js');
 require('./services/slack.js');
-// require('./express.js');
+require('./express.js');

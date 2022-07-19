@@ -7,7 +7,7 @@ const route = express.Router();
 (async () => {
   const m = await (await (await Message.findOne({})).populate('slack_user')).slack_user;
 
-  console.log(m);
+  //   console.log(m);
   //   console.log(await (await m.populate('slack_user')));
   //   const user = await User.findOne({
   //     slack_display_name: 'Mordi',

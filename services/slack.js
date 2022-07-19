@@ -48,10 +48,11 @@ const getParentUser = async (message) => {
   console.log('1');
   if (mes.slack_parent) {
     console.log('2');
-    mes = await Message.findOne({ slack_parent: mes.slack_parent });
+    mes = await mes.populate('slack_parent');
+    mes = await mes.slack_parent;
   }
 
-  mes = await mes.populate(User, { path: 'slack_user' });
+  mes = await mes.populate('slack_user');
   console.log('3');
   const user = await mes.slack_user;
   console.log('4', user);
@@ -79,6 +80,14 @@ app.event('reaction_added', async ({ event, client }) => {
     console.error(e);
   }
 });
+
+(async () => {
+  // Play Ground
+  // mes = await Message.findById('62d6aa3d477ac2946fa1dcbf');
+  // let parent_user = await getParentUser(mes);
+  // console.log('parent_user', parent_user);
+  // console.log(mes._id);
+})();
 
 (async () => {
   await app.start(5000);

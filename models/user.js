@@ -37,6 +37,6 @@ userSchema.virtual('right_answers').get(async function () {
   return await Reaction.count({ receiver: this._id, type: '' });
 });
 
-const User = mongoose.model('users', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;

@@ -27,6 +27,6 @@ const reactionSchema = new mongoose.Schema({
 
 // all kind of static or instances
 
-const Reaction = mongoose.model('reactions', reactionSchema);
+const Reaction = mongoose.model('Reaction', reactionSchema);
 
 module.exports = Reaction;
