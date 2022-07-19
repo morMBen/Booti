@@ -1,26 +1,28 @@
 const mongoose = require('mongoose');
+const Message = require('./message');
+const User = require('./user');
 
 const reactionSchema = new mongoose.Schema({
   reaction_id: 'string', //* event_ts
   type: 'string', //* reaction
   parent_user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: User,
   },
   sender: {
     //* user
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: User,
   },
   receiver: {
     //* item_user
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: User,
   },
   message: {
     //* ts → ObjectId
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Message',
+    ref: Message,
   },
 });
 
