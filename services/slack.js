@@ -11,14 +11,6 @@ const app = new App({
   signingSecret: process.env.SIGNIN_SECRET,
 });
 
-app.message('sa', async ({ message, say }) => {
-  // app.client.conversations.list({ token: process.env.TOKEN });
-  // app.client.chat.postMessage({
-  //   token: process.env.TOKEN,
-  //   channel: 'C03PJDWV5Q9',
-  //   blocks: [{ type: 'section', text: { type: 'plain_text', text: 'Hello world' } }],
-  // });
-});
 app.message('', async ({ message, say }) => {
   try {
     const user = await User.setUser(message.user, app);
@@ -58,9 +50,9 @@ app.event('reaction_added', async ({ event, client }) => {
 
     const getCurrentUser = async () => {
       let mes = message;
-      // if (message.slack_parent) {
-      //   mes = await message.populate('slack_parent').slack_parent;
-      // }
+      if (message.slack_parent) {
+        mes = await message.populate('slack_parent').slack_parent;
+      }
       return await mes.populate('slack_user');
     };
 
