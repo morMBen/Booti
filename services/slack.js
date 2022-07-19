@@ -48,15 +48,13 @@ const getParentUser = async (message) => {
   console.log('1');
   console.log(mes.slack_parent);
   if (mes.slack_parent) {
-    mes = await mes.populate('slack_parent');
+    mes = await mes.findOne({ slack_parent: mes.slack_parent });
     console.log('2');
-    mes = await mes.slack_parent;
-    console.log('3');
   }
   mes = await mes.populate('slack_user');
-  console.log('4');
+  console.log('3');
   const user = await mes.slack_user;
-  console.log(5, user);
+  console.log('4', user);
   return user;
 };
 

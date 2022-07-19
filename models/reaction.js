@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+require('./message');
 
 const reactionSchema = new mongoose.Schema({
   reaction_id: 'string', //* event_ts
