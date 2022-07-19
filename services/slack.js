@@ -41,6 +41,18 @@ app.event('reaction_removed', async ({ event, client }) => {
     console.error(e);
   }
 });
+
+const getParentUser = async (message) => {
+  let mes = message;
+  if (mes.slack_parent) {
+    mes = await mes.populate('slack_parent');
+    mes = await mes.slack_parent;
+  }
+  mes = await mes.populate('slack_user');
+  const user = await mes.slack_user;
+  return user;
+};
+
 app.event('reaction_added', async ({ event, client }) => {
   try {
     const sender = await User.setUser(event.user, app);
@@ -48,16 +60,8 @@ app.event('reaction_added', async ({ event, client }) => {
     const message = await Message.findOne({ slack_message_id: event.item.ts });
     const reaction_id = event.event_ts;
 
-    const getCurrentUser = async () => {
-      let mes = message;
-      if (message.slack_parent) {
-        mes = await message.populate('slack_parent').slack_parent;
-      }
-      return await mes.populate('slack_user');
-    };
-
     const reaction = await Reaction.create({
-      parent_user: await getCurrentUser().slack_user,
+      parent_user: await getParentUser(message),
       reaction_id,
       type: event.reaction,
       sender,
