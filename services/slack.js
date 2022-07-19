@@ -5,6 +5,7 @@ const Message = require('../models/message.js');
 
 const User = require('../models/user.js');
 const Reaction = require('../models/reaction.js');
+const { ConsoleLogger } = require('@slack/logger');
 
 const app = new App({
   token: process.env.TOKEN,
@@ -44,12 +45,17 @@ app.event('reaction_removed', async ({ event, client }) => {
 
 const getParentUser = async (message) => {
   let mes = message;
+  console.log('message →', mes);
   if (mes.slack_parent) {
     mes = await mes.populate('slack_parent');
+    console.log('mes.populate →', mes);
     mes = await mes.slack_parent;
+    console.log('mes.slack_parent →', mes);
   }
   mes = await mes.populate('slack_user');
+  console.log('mes.populate("slack_user") →', mes);
   const user = await mes.slack_user;
+  console.log('user', user);
   return user;
 };
 
