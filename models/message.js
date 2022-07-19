@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const User = require('./user');
 
 const messageSchema = new mongoose.Schema({
   text: 'string',
@@ -7,11 +6,11 @@ const messageSchema = new mongoose.Schema({
   slack_message_id: 'string',
   slack_user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: User,
+    ref: 'User',
   },
   slack_parent: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: Message,
+    ref: 'Message',
   },
 });
 
