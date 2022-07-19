@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Message = require('./message');
+const User = require('./user');
 require('./message');
 
 const reactionSchema = new mongoose.Schema({
@@ -6,22 +8,22 @@ const reactionSchema = new mongoose.Schema({
   type: 'string', //* reaction
   parent_user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: User,
   },
   sender: {
     //* user
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: User,
   },
   receiver: {
     //* item_user
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: User,
   },
   message: {
     //* ts → ObjectId
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Message',
+    ref: Message,
   },
 });
 
