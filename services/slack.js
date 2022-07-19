@@ -49,11 +49,9 @@ const getParentUser = async (message) => {
   if (mes.slack_parent) {
     console.log('2');
     mes = await Message.findOne({ slack_parent: mes.slack_parent });
-    // // console.log('2');
-    // mes = await mes.slack_parent;
-    // console.log('3');
   }
-  mes = await mes.populate('slack_user');
+
+  mes = await mes.populate(User, { path: 'slack_user' });
   console.log('3');
   const user = await mes.slack_user;
   console.log('4', user);
