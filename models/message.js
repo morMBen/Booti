@@ -11,7 +11,7 @@ const messageSchema = new mongoose.Schema({
   },
   slack_parent: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Message',
+    ref: Message,
   },
 });
 
