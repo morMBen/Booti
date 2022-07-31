@@ -18,4 +18,16 @@ route.get('/users', async (req, res) => {
   }
 });
 
+route.get('/reset', async (req, res) => {
+  try {
+    await Message.remove({});
+    await User.remove({});
+    await Reaction.remove({});
+    res.send('Done!');
+  } catch (e) {
+    console.log(e.message);
+    res.send(e.message);
+  }
+});
+
 module.exports = route;

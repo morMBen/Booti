@@ -94,10 +94,10 @@ app.event('reaction_added', async ({ event, client }) => {
   console.log('* bolt app is running!');
 })();
 
-const reset = async () => {
-  await Message.remove({});
-  await User.remove({});
-  await Reaction.remove({});
-};
+// const reset = async () => {
+//   await Message.remove({});
+//   await User.remove({});
+//   await Reaction.remove({});
+// };
 
-reset();
+// reset();
