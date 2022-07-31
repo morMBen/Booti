@@ -7,6 +7,7 @@ const route = express.Router();
 route.get('/users', async (req, res) => {
   try {
     const user = await User.findById(req.body.id);
+    console.log('/users  user', user);
     // console.log('/users  right_answers', await user.right_answers);
     console.log('/users  reactions', await user.reactions);
     res.send(await user.reactions);
