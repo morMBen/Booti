@@ -7,7 +7,7 @@ const route = express.Router();
 route.get('/users', async (req, res) => {
   try {
     console.log('/users  req', req.body);
-    const user = User.find({ _id: new ObjectId(req.body.id) });
+    const user = User.findById(req.body.id);
     console.log('/users  user', User);
     res.send(user);
   } catch (e) {
