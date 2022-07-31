@@ -66,10 +66,10 @@ app.event('reaction_added', async ({ event, client }) => {
     const message = await Message.findOne({ slack_message_id: event.item.ts });
     const reaction_id = event.event_ts;
 
-    // const parent_user = await getParentUser(message);
-    // console.log('parent_user →', parent_user);
+    const parent_user = await getParentUser(message);
+    console.log('parent_user →', parent_user);
     const reaction = await Reaction.create({
-      // parent_user,
+      parent_user,
       reaction_id,
       type: event.reaction,
       sender,
@@ -93,11 +93,3 @@ app.event('reaction_added', async ({ event, client }) => {
   await app.start(5000);
   console.log('* bolt app is running!');
 })();
-
-// const reset = async () => {
-//   await Message.remove({});
-//   await User.remove({});
-//   await Reaction.remove({});
-// };
-
-// reset();
