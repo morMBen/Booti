@@ -32,12 +32,23 @@ route.get('/goodreaction', async (req, res) => {
 
 (async (req, res) => {
   const user = await User.findOne({ slack_display_name: 'yehudago goldner' });
-  const anyReactions = await user.any_reactions;
-  console.log('anyReaction', anyReactions);
-  const goodReactions = await user.good_reaction;
-  console.log('goodreaction', goodReactions);
-  const solved_reaction = await user.solved_reaction;
-  console.log('solved_reaction', solved_reaction);
+  const user2 = await User.findOne({ slack_display_name: 'Mordi' });
+  console.log({
+    name: user.slack_display_name,
+    any_reactions: await user.any_reactions,
+    good_reaction: await user.good_reaction,
+    solved_reaction: await user.solved_reaction,
+    answers: await user.answers,
+    questions: await user.questions,
+  });
+  console.log({
+    name: user2.slack_display_name,
+    any_reactions: await user2.any_reactions,
+    good_reaction: await user2.good_reaction,
+    solved_reaction: await user2.solved_reaction,
+    answers: await user2.answers,
+    questions: await user2.questions,
+  });
 })();
 
 route.get('/solved_reaction', async (req, res) => {

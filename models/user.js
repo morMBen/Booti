@@ -1,5 +1,6 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
+const Message = require('./message');
 const Reaction = require('./reaction');
 
 const userSchema = new mongoose.Schema({
@@ -48,33 +49,22 @@ userSchema.virtual('good_reaction').get(async function () {
 });
 
 userSchema.virtual('solved_reaction').get(async function () {
-  return await Reaction.find({
-    receiver: this._id,
-    type: 'white_check_mark',
-    solved_user: true,
-    sender: { $ne: this._id },
+  return await Message.find({
+    solved_user: this._id,
   }).count();
 });
-// userSchema.virtual('reactions').get(async function () {
-//   return await Reaction.find({
-//     receiver: this._id,
-//     type: 'white_check_mark',
-//   })
-//     .where('this.sender===this.parent_user')
-//     .where('sender')
-//     .ne(this._id)
-//     .count();
-// });
-
-// userSchema.virtual('right_answers').get(async function () {
-//   return await Reaction.find({
-//     sender: this._id,
-//     type: 'white_check_mark',
-//   })
-//     .where('sender')
-//     .ne(this._id)
-//     .count();
-// });
+userSchema.virtual('answers').get(async function () {
+  return await Message.find({
+    slack_user: this._id,
+    slack_parent: { $ne: null },
+  }).count();
+});
+userSchema.virtual('questions').get(async function () {
+  return await Message.find({
+    slack_user: this._id,
+    slack_parent: null,
+  }).count();
+});
 
 const User = mongoose.model('User', userSchema);
 

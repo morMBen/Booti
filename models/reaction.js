@@ -4,7 +4,7 @@ require('./message');
 const reactionSchema = new mongoose.Schema({
   reaction_id: 'string', //* event_ts
   type: 'string', //* reaction
-  solved_user: 'boolean',
+  // solved_user: 'boolean',
   parent_user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
