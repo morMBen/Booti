@@ -68,7 +68,8 @@ app.event('reaction_added', async ({ event, client }) => {
     const parent_user = await getParentUser(message);
 
     if (parent_user._id.toString() === sender._id.toString()) {
-      const parentMessage = await message.populate('slack_parent').slack_parent;
+      let parentMessage = await message.populate('slack_parent');
+      parentMessage = await parentMessage.slack_parent;
       parentMessage.solved_user = receiver;
       parentMessage.save();
     }
