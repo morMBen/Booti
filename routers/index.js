@@ -6,9 +6,9 @@ const route = express.Router();
 
 route.get('/users', async (req, res) => {
   try {
-    console.log('/users  req', req.body);
     const user = User.findById(req.body.id);
-    console.log('/users  user', user);
+    console.log('/users  right_answers', user.right_answers);
+    console.log('/users  reactions', user.reactions);
     res.send(user.right_answers);
   } catch (e) {
     console.log(e.message);
