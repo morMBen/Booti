@@ -21,9 +21,9 @@ route.get('/users', async (req, res) => {
 
 route.get('/reset', async (req, res) => {
   try {
-    await Message.remove({});
-    await User.remove({});
-    await Reaction.remove({});
+    await Message.deleteMany({});
+    await User.deleteMany({});
+    await Reaction.deleteMany({});
     res.send('Done!');
   } catch (e) {
     console.log(e.message);
