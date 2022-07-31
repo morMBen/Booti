@@ -11,7 +11,7 @@ route.get('/users', async (req, res) => {
     const user = await User.find({ slack_display_name: req.body.name });
     console.log('/users  user', user);
     // console.log('/users  right_answers', await user.right_answers);
-    // console.log('/users  reactions', await user.reactions);
+    console.log('/users  reactions', await user.reactions);
     res.send(await user.reactions);
   } catch (e) {
     console.log(e.message);
