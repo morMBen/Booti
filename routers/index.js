@@ -1,5 +1,6 @@
 const express = require('express');
 const Message = require('../models/message.js');
+const Reaction = require('../models/reaction.js');
 const User = require('../models/user.js');
 
 const route = express.Router();
