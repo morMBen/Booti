@@ -67,13 +67,6 @@ app.event('reaction_added', async ({ event, client }) => {
     const reaction_id = event.event_ts;
 
     const parent_user = await getParentUser(message);
-
-    console.log('parent_user === →', parent_user);
-    console.log('parent_user === →', parent_user._id);
-    console.log('sender == →', sender);
-    console.log('sender == →', sender._id);
-    console.log('==', parent_user._id.toString() == sender._id.toString());
-    console.log('===', parent_user._id.toString() === sender._id.toString());
     const reaction = await Reaction.create({
       parent_user,
       reaction_id,
@@ -81,7 +74,7 @@ app.event('reaction_added', async ({ event, client }) => {
       sender,
       receiver,
       message,
-      solved_user: parent_user._id === sender._id,
+      solved_user: parent_user._id.toString() === sender._id.toString(),
     });
   } catch (e) {
     console.error(e);
