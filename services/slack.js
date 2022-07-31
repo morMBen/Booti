@@ -83,8 +83,8 @@ app.event('reaction_added', async ({ event, client }) => {
 
 (async () => {
   // Play Ground
-  const user = await User.findById('62d6bebc3156718dfaf1b6b7');
-  console.log(await user.right_answers);
+  // const user = await User.findById('62d6bebc3156718dfaf1b6b7');
+  // console.log(await user.right_answers);
   // console.log('parent_user', parent_user);
   // console.log(mes._id);
 })();
