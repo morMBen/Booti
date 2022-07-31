@@ -36,11 +36,11 @@ userSchema.virtual('reactions').get(async function () {
   return await Reaction.find({
     receiver: this._id,
     type: 'white_check_mark',
-  })
-    .where('this.sender===this.parent_user')
-    .where('sender')
-    .ne(this._id)
-    .count();
+  });
+  // .where('this.sender===this.parent_user')
+  // .where('sender')
+  // .ne(this._id)
+  // .count();
 });
 
 // userSchema.virtual('right_answers').get(async function () {
