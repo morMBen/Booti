@@ -8,7 +8,7 @@ route.get('/users', async (req, res) => {
   try {
     console.log('/users  req', req.body);
     const user = User.find({ _id: new ObjectId(req.body.id) });
-    res.send(user.reactions);
+    res.send(user);
   } catch (e) {
     console.log(e.message);
     res.send(e.message);
