@@ -72,6 +72,8 @@ app.event('reaction_added', async ({ event, client }) => {
     console.log('parent_user === →', parent_user._id);
     console.log('sender == →', sender);
     console.log('sender == →', sender._id);
+    console.log('==', parent_user._id == sender._id);
+    console.log('===', parent_user._id === sender._id);
     const reaction = await Reaction.create({
       parent_user,
       reaction_id,
