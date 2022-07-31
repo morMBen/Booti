@@ -18,7 +18,7 @@ userSchema.statics.setUser = async (id, app) => {
     } = userData;
 
     if (!user) {
-      user = await new User({ slack_display_name: display_name, slack_user_id: id });
+      user = new User({ slack_display_name: display_name, slack_user_id: id });
       await user.save();
     } else {
       await user.updateOne({
