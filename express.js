@@ -12,7 +12,7 @@ app.use(express.static(publicDirectoryPath));
 app.use('/api', route);
 
 app.get('*', (req, res) => {
-  req.sendFile(path.resolve(publicDirectoryPath, 'index.html'));
+  res.sendFile(path.resolve(publicDirectoryPath, 'index.html'));
 });
 
 app.listen(port, () => {
