@@ -6,7 +6,7 @@ const route = express.Router();
 
 route.get('/users', async (req, res) => {
   try {
-    const user = await User.findById(req.body.id);
+    const user = await User.find({ slack_display_name: req.body.name });
     console.log('/users  user', user);
     // console.log('/users  right_answers', await user.right_answers);
     console.log('/users  reactions', await user.reactions);
