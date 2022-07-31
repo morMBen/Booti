@@ -30,6 +30,29 @@ route.get('/goodreaction', async (req, res) => {
   }
 });
 
+(async (req, res) => {
+  const user = await User.findOne({ slack_display_name: 'yehudago goldner' });
+  const anyReactions = await user.any_reactions;
+  console.log('anyReaction', anyReactions);
+  const goodReactions = await user.good_reaction;
+  console.log('goodreaction', goodReactions);
+  const solved_reaction = await user.solved_reaction;
+  console.log('solved_reaction', solved_reaction);
+})();
+
+route.get('/solved_reaction', async (req, res) => {
+  try {
+    const user = await User.findOne({ slack_display_name: req.body.name });
+    const solved_reaction = await user.solved_reaction;
+    console.log('solved_reaction', solved_reaction);
+
+    res.send({ solved_reaction: solved_reaction });
+  } catch (e) {
+    console.log(e.message);
+    res.send(e.message);
+  }
+});
+
 route.get('/reset', async (req, res) => {
   try {
     await Message.deleteMany({});
