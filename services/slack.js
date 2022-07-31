@@ -24,6 +24,7 @@ app.message('', async ({ message, say }) => {
       slack_user: user._id,
       slack_parent: (oldMessage && oldMessage._id) || null,
     });
+    say('Hello there');
     // console.log('message →', message);
     // console.log('mes from mongoose →', mes);
   } catch (e) {
