@@ -75,6 +75,7 @@ app.event('reaction_added', async ({ event, client }) => {
       sender,
       receiver,
       message,
+      solved_user: parent_user === sender,
     });
   } catch (e) {
     console.error(e);
