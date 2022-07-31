@@ -33,15 +33,14 @@ userSchema.statics.setUser = async (id, app) => {
 };
 
 userSchema.virtual('reactions').get(async function () {
-  // return await Reaction.find({
-  //   receiver: this._id,
-  //   type: 'white_check_mark',
-  // });
-  //   .where('this.sender===this.parent_user')
-  //   .where('sender')
-  //   .ne(this._id)
-  //   .count();
-  return 10;
+  return await Reaction.find({
+    receiver: this._id,
+    type: 'white_check_mark',
+  });
+  // .where('this.sender===this.parent_user');
+  // .where('sender')
+  // .ne(this._id)
+  // .count();
 });
 // userSchema.virtual('reactions').get(async function () {
 //   return await Reaction.find({
@@ -54,15 +53,15 @@ userSchema.virtual('reactions').get(async function () {
 //     .count();
 // });
 
-userSchema.virtual('right_answers').get(async function () {
-  return await Reaction.find({
-    sender: this._id,
-    type: 'white_check_mark',
-  })
-    .where('sender')
-    .ne(this._id)
-    .count();
-});
+// userSchema.virtual('right_answers').get(async function () {
+//   return await Reaction.find({
+//     sender: this._id,
+//     type: 'white_check_mark',
+//   })
+//     .where('sender')
+//     .ne(this._id)
+//     .count();
+// });
 
 const User = mongoose.model('User', userSchema);
 

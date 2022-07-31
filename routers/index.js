@@ -7,11 +7,8 @@ const route = express.Router();
 
 route.get('/users', async (req, res) => {
   try {
-    console.log('/users  user', req.body.name);
-    const user = await User.find({ slack_display_name: req.body.name });
-    console.log('/users  user', user);
-    // console.log('/users  right_answers', await user.right_answers);
-    console.log('/users  reactions', await user.reactions);
+    const user = await User.findOne({ slack_display_name: req.body.name });
+
     res.send(await user.reactions);
   } catch (e) {
     console.log(e.message);
