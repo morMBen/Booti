@@ -9,7 +9,7 @@ route.get('/users', async (req, res) => {
     console.log('/users  req', req.body);
     const user = User.findById(req.body.id);
     console.log('/users  user', user);
-    // res.send(user);
+    res.send(user.right_answers);
   } catch (e) {
     console.log(e.message);
     res.send(e.message);
