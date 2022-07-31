@@ -45,17 +45,17 @@ app.event('reaction_removed', async ({ event, client }) => {
 
 const getParentUser = async (message) => {
   let mes = message;
-  console.log('1');
+  // console.log('1');
   if (mes.slack_parent) {
-    console.log('2');
+    // console.log('2');
     mes = await mes.populate('slack_parent');
     mes = await mes.slack_parent;
   }
 
   mes = await mes.populate('slack_user');
-  console.log('3');
+  // console.log('3');
   const user = await mes.slack_user;
-  console.log('4', user);
+  // console.log('4', user);
   return user;
 };
 
@@ -68,8 +68,10 @@ app.event('reaction_added', async ({ event, client }) => {
 
     const parent_user = await getParentUser(message);
 
-    console.log('parent_user === →', parent_user === sender);
-    console.log('parent_user == →', parent_user == sender);
+    console.log('parent_user === →', parent_user);
+    console.log('parent_user === →', parent_user._id);
+    console.log('sender == →', sender);
+    console.log('sender == →', sender._id);
     const reaction = await Reaction.create({
       parent_user,
       reaction_id,
