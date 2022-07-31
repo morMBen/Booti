@@ -32,9 +32,25 @@ userSchema.statics.setUser = async (id, app) => {
   }
 };
 
+userSchema.virtual('reactions').get(async function () {
+  return await Reaction.find({
+    receiver: this._id,
+    type: 'white_check_mark',
+  })
+    .where('this.sender===this.parent_user')
+    .where('sender')
+    .ne(this._id)
+    .count();
+});
+
 userSchema.virtual('right_answers').get(async function () {
-  console.log(this);
-  return await Reaction.count({ receiver: this._id, type: '' });
+  return await Reaction.find({
+    sender: this._id,
+    type: 'white_check_mark',
+  })
+    .where('sender')
+    .ne(this._id)
+    .count();
 });
 
 const User = mongoose.model('User', userSchema);

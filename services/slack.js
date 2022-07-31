@@ -83,8 +83,8 @@ app.event('reaction_added', async ({ event, client }) => {
 
 (async () => {
   // Play Ground
-  // mes = await Message.findById('62d6aa3d477ac2946fa1dcbf');
-  // let parent_user = await getParentUser(mes);
+  const user = await User.findById('62d6bebc3156718dfaf1b6b7');
+  console.log(await user.right_answers);
   // console.log('parent_user', parent_user);
   // console.log(mes._id);
 })();
@@ -93,3 +93,11 @@ app.event('reaction_added', async ({ event, client }) => {
   await app.start(5000);
   console.log('* bolt app is running!');
 })();
+
+const reset = async () => {
+  await Message.remove({});
+  await User.remove({});
+  await Reaction.remove({});
+};
+
+reset();
