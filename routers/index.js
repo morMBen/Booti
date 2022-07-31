@@ -6,7 +6,8 @@ const route = express.Router();
 
 route.get('/users', async (req, res) => {
   try {
-    res.send('hola');
+    const user = User.find({ _id: req.body.id });
+    res.send(user.reactions);
   } catch (e) {
     console.log(e.message);
     res.send(e.message);
