@@ -9,7 +9,7 @@ route.get('/users', async (req, res) => {
     const user = await User.findById(req.body.id);
     console.log('/users  right_answers', await user.right_answers);
     console.log('/users  reactions', await user.reactions);
-    res.send(await user.right_answers);
+    res.send(await user.reactions);
   } catch (e) {
     console.log(e.message);
     res.send(e.message);
