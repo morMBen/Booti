@@ -37,21 +37,24 @@ const data = [
 ];
 
 function App() {
+  const [users, setUsers] = React.useState(null);
   React.useEffect(() => {
     API.get('/users').then((res) => {
-      console.log(res);
+      setUsers(res.data);
     });
-  });
+  }, []);
   return (
     <div className='App'>
       <Header />
       <Container maxWidth='xl'>
-        <Students
-          data={data}
-          render={(student) => {
-            return <Student {...student} />;
-          }}
-        />
+        {users && (
+          <Students
+            data={users}
+            render={(student) => {
+              return <Student {...student} />;
+            }}
+          />
+        )}
       </Container>
     </div>
   );

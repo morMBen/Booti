@@ -24,8 +24,6 @@ app.message('', async ({ message, say }) => {
       slack_user: user._id,
       slack_parent: (oldMessage && oldMessage._id) || null,
     });
-    // console.log('message →', message);
-    // console.log('mes from mongoose →', mes);
   } catch (e) {
     console.log(e);
   }
@@ -45,17 +43,13 @@ app.event('reaction_removed', async ({ event, client }) => {
 
 const getParentUser = async (message) => {
   let mes = message;
-  // console.log('1');
   if (mes.slack_parent) {
-    // console.log('2');
     mes = await mes.populate('slack_parent');
     mes = await mes.slack_parent;
   }
 
   mes = await mes.populate('slack_user');
-  // console.log('3');
   const user = await mes.slack_user;
-  // console.log('4', user);
   return user;
 };
 
@@ -81,20 +75,11 @@ app.event('reaction_added', async ({ event, client }) => {
       sender,
       receiver,
       message,
-      // solved_user: parent_user._id.toString() === sender._id.toString(),
     });
   } catch (e) {
     console.error(e);
   }
 });
-
-(async () => {
-  // Play Ground
-  // const user = await User.findById('62d6bebc3156718dfaf1b6b7');
-  // console.log(await user.right_answers);
-  // console.log('parent_user', parent_user);
-  // console.log(mes._id);
-})();
 
 (async () => {
   await app.start(5000);

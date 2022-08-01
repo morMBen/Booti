@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import StarIcon from '@mui/icons-material/Star';
 
 const labels = {
+  0: 'לא בעניינים',
   0.5: 'צעיר מת',
   1: 'צעיר',
   1.5: 'מתחיל להשתפשף',
@@ -21,7 +22,6 @@ function getLabelText(value) {
 }
 
 export default function UserRating(props) {
- 
   return (
     <Box
       sx={{
@@ -31,16 +31,15 @@ export default function UserRating(props) {
       }}
     >
       <Rating
-        name="hover-feedback"
+        style={{ textAlign: 'right' }}
+        name='half-rating'
         {...props}
         readOnly
         precision={0.5}
-        getLabelText={getLabelText}                
-        emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+        getLabelText={getLabelText}
+        emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize='inherit' />}
       />
-      {props.value !== null && (
-        <Box sx={{ m: 2 }}>{labels[props.value]}</Box>
-      )}
+      {props.value !== null && <Box sx={{ m: 2 }}>{labels[props.value]}</Box>}
     </Box>
   );
 }
