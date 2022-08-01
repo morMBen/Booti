@@ -3,9 +3,18 @@ const mongoose = require('mongoose');
 const Message = require('./message');
 const Reaction = require('./reaction');
 
+const scoresSchema = new mongoose.Schema({
+  questions: { type: 'number', default: 0 },
+  answers: { type: 'number', default: 0 },
+  right_answers: { type: 'number', default: 0 },
+  reactions: { type: 'number', default: 0 },
+  any_reactions: { type: 'number', default: 0 },
+});
+
 const userSchema = new mongoose.Schema({
   slack_display_name: 'string',
   slack_user_id: 'string',
+  scores: scoresSchema,
 });
 
 userSchema.statics.setUser = async (id, app) => {
