@@ -77,10 +77,16 @@ app.event('reaction_added', async ({ event, client }) => {
       message,
     });
 
-    console.log(await receiver.any_reactions);
-    console.log(receiver);
-    receiver.scores.questions = 2;
-    await receiver.save();
+    await User.findOneAndUpdate(
+      { slack_user_id: receiver.slack_user_id },
+      {
+        scores: { questions: 2 },
+      }
+    );
+    // console.log(await receiver.any_reactions);
+    // console.log(receiver);
+    // receiver.scores.questions = 2;
+    // await receiver.save();
   } catch (e) {
     console.error(e);
   }
