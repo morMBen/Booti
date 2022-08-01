@@ -77,7 +77,7 @@ app.event('reaction_added', async ({ event, client }) => {
       message,
     });
 
-    console.log(await receiver.questions);
+    console.log(await receiver.any_reactions);
     receiver.q = 'brr';
   } catch (e) {
     console.error(e);
