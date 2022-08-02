@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let url = 'http://localhost:8000/api';
+let url = 'http://localhost:80/api';
 
 if (process.env.NODE_ENV === 'production') {
   url = 'api';

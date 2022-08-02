@@ -7,7 +7,6 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import QuizIcon from '@mui/icons-material/Quiz';
 import Tooltip from '@mui/material/Tooltip';
 import DoneIcon from '@mui/icons-material/Done';
-
 export default function Student(props) {
   return (
     <div className='d-flex m-1 student-content'>
@@ -16,7 +15,7 @@ export default function Student(props) {
         {props.slack_display_name}
       </div>
 
-      <div className='item'>
+      <div>
         <Tooltip title='שאלות' arrow>
           <div>
             <Circle color='secondary' value={props.questions} />
@@ -24,7 +23,7 @@ export default function Student(props) {
           </div>
         </Tooltip>
       </div>
-      <div className='item'>
+      <div>
         <Tooltip title='לייקים' arrow>
           <div>
             <Circle color='primary' value={props.reactions} />
@@ -32,7 +31,7 @@ export default function Student(props) {
           </div>
         </Tooltip>
       </div>
-      <div className='item'>
+      <div>
         <Tooltip title='תשובות שסומנו כנכונות' arrow>
           <div>
             <Circle color='success' value={props.right_answers} />
@@ -40,7 +39,7 @@ export default function Student(props) {
           </div>
         </Tooltip>
       </div>
-      <div className='item'>
+      <div>
         <Tooltip title='תשובות' arrow>
           <div>
             <Circle color='secondary' value={props.right_answers} />

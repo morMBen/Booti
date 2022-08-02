@@ -5,6 +5,7 @@ import Header from 'components/header/header';
 import { Container } from '@mui/material';
 import Student from 'components/students/Student';
 import API from 'api/Api';
+import MuiResponsiveness from 'MuiResponsiveness/MuiResponsiveness';
 
 const data = [
   {
@@ -56,6 +57,7 @@ function App() {
           />
         )}
       </Container>
+      {/* <MuiResponsiveness /> */}
     </div>
   );
 }

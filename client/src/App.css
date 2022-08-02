@@ -4,7 +4,6 @@ html {
 
 .App {
   text-align: center;
-  
 }
 
 .student-content {
@@ -14,6 +13,6 @@ html {
 }
 
 .student-content .item {
-  min-width:10em;
+  min-width: 10em;
   text-align: right;
 }
