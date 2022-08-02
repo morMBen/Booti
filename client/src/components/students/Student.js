@@ -12,7 +12,9 @@ export default function Student(props) {
   return (
     <div className='d-flex m-1 student-content'>
       <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
-      <div className='item'>{props.slack_display_name}</div>
+      <div className='item' style={{ paddingRight: '1rem' }}>
+        {props.slack_display_name}
+      </div>
 
       <div className='item'>
         <Tooltip title='שאלות' arrow>
