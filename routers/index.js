@@ -75,7 +75,7 @@ route.get('/users', async (req, res) => {
         };
         usersArr.push(data);
       }
-      console.log(usersArr);
+      // console.log(usersArr);
 
       res.send(usersArr);
     });
@@ -94,8 +94,8 @@ route.get('/reset', async (req, res) => {
     res.send(e.message);
   }
 });
-(async () => {
-  let user = await User.findOne({ slack_display_name: 'Mordi 2' });
-  console.log(await user.getAllRating());
-})();
+// (async () => {
+//   let user = await User.findOne({ slack_display_name: 'Mordi 2' });
+//   console.log(await user.getAllRating());
+// })();
 module.exports = route;
