@@ -6,7 +6,7 @@ import { Container } from '@mui/material';
 import Student from 'components/students/Student';
 import API from 'api/Api';
 import MuiResponsiveness from 'MuiResponsiveness/MuiResponsiveness';
-import Appi from 'testTable/Appi';
+import TableContent from 'testTable/TableContent';
 
 const data = [
   {
@@ -47,18 +47,18 @@ function App() {
   }, []);
   return (
     <div className='App'>
-      {/* <Appi /> */}
       <Header />
-      <Container maxWidth='xl'>
-        {users && (
-          <Students
-            data={users}
-            render={(student) => {
-              return <Student {...student} />;
-            }}
-          />
-        )}
-      </Container>
+      {users && <TableContent data={users} />}
+      {/* <Container maxWidth='xl'> */}
+      {/* {users && (
+        <Students
+          data={users}
+          render={(student) => {
+            return <Student {...student} />;
+          }}
+        />
+      )} */}
+      {/* </Container> */}
     </div>
   );
 }

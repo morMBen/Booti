@@ -1,10 +1,10 @@
 import React from 'react';
 import TableContent from './TableContent';
 
-function Appi() {
+function Appi({ data }) {
   return (
     <div>
-      <TableContent />
+      <TableContent data={data} />
     </div>
   );
 }

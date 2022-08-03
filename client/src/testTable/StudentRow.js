@@ -8,48 +8,104 @@ import QuizIcon from '@mui/icons-material/Quiz';
 import Tooltip from '@mui/material/Tooltip';
 import DoneIcon from '@mui/icons-material/Done';
 import Circle from 'components/circle/circle';
-import { TableCell, TableRow } from '@mui/material';
+import { Box, TableCell, TableRow } from '@mui/material';
+import GppGoodIcon from '@mui/icons-material/GppGood';
+
 export default function StudentRow(props) {
   return (
-    <TableRow className='d-flex m-1 student-content'>
-      <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
-      <TableCell className='item' style={{ paddingRight: '1rem' }}>
-        {props.slack_display_name}
+    <TableRow className='m-1 student-content'>
+      <TableCell className='item' style={{ paddingRight: '0rem' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            marginRight: '3rem',
+            '@media (max-width: 1000px)': {
+              marginRight: '0',
+              flexDirection: 'column',
+            },
+          }}
+        >
+          <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' className='ml-2' />
+          {props.slack_display_name}
+        </Box>
       </TableCell>
-
-      <TableCell>
-        <Tooltip title='שאלות' arrow>
-          <div>
+      <Tooltip
+        title='שאלות'
+        arrow
+        sx={{
+          '@media (max-width: 768px)': {
+            display: 'none',
+          },
+        }}
+      >
+        <TableCell>
+          <>
             <Circle color='secondary' value={props.questions} />
             <QuizIcon color='secondary' className='m-2' />
-          </div>
-        </Tooltip>
-      </TableCell>
-      <TableCell>
-        <Tooltip title='לייקים' arrow>
-          <div>
-            <Circle color='primary' value={props.reactions} />
-            <ThumbUpIcon color='primary' className='m-2' />
-          </div>
-        </Tooltip>
-      </TableCell>
-      <TableCell>
-        <Tooltip title='תשובות שסומנו כנכונות' arrow>
-          <div>
-            <Circle color='success' value={props.right_answers} />
-            <DoneIcon color='success' className='m-2' />
-          </div>
-        </Tooltip>
-      </TableCell>
-      <TableCell>
-        <Tooltip title='תשובות' arrow>
-          <div>
+          </>
+        </TableCell>
+      </Tooltip>
+      <Tooltip
+        title='תשובות'
+        arrow
+        sx={{
+          '@media (max-width: 413px)': {
+            display: 'none',
+          },
+        }}
+      >
+        <TableCell>
+          <>
             <Circle color='secondary' value={props.right_answers} />
             <QuestionAnswerIcon color='secondary' className='m-2' />
-          </div>
-        </Tooltip>
+          </>
+        </TableCell>
+      </Tooltip>
+      <Tooltip
+        title="כל סוגי האימוג'ים"
+        arrow
+        sx={{
+          '@media (max-width: 900px)': {
+            display: 'none',
+          },
+        }}
+      >
+        <TableCell>
+          <>
+            <Circle color='primary' value={props.any_reactions} />
+            <ThumbUpIcon color='primary' className='m-2' />
+          </>
+        </TableCell>
+      </Tooltip>
+      <Tooltip
+        title='פתר את הבעיה, אך לא לשואל השאלה.'
+        arrow
+        sx={{
+          '@media (max-width: 600px)': {
+            display: 'none',
+          },
+        }}
+      >
+        <TableCell>
+          <>
+            <Circle color='primary' value={props.reactions} />
+            <DoneIcon color='success' className='m-2' />
+          </>
+        </TableCell>
+      </Tooltip>
+      <Tooltip title='פתר את הבעיה לשואל השאלה.' arrow>
+        <TableCell>
+          <>
+            <Circle color='success' value={props.right_answers} />
+            <GppGoodIcon color='success' className='m-2' />
+          </>
+        </TableCell>
+      </Tooltip>
+      <TableCell>
+        <UserRating value={props.rating} />
       </TableCell>
-      <UserRating value={props.rating} />
     </TableRow>
   );
 }

@@ -72,7 +72,7 @@ userSchema.methods.getAllRating = async function () {
     questions: await this.questions,
     answers: await this.answers,
     right_answers: await this.solved_reaction,
-    reactions: await this.any_reactions,
+    reactions: await this.good_reaction,
     any_reactions: await this.any_reactions,
   };
   const { rating, score } = calculateRating(ratings);

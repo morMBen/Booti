@@ -20,8 +20,6 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log('↓↓↓↓↓↓↓↓');
-  console.log(' SSL_PRIVATE_KEY →', process.env.SSL_PRIVATE_KEY);
   console.log('listen to port -> ', port);
 });
 

@@ -7,14 +7,14 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import QuizIcon from '@mui/icons-material/Quiz';
 import Tooltip from '@mui/material/Tooltip';
 import DoneIcon from '@mui/icons-material/Done';
+import GppGoodIcon from '@mui/icons-material/GppGood';
 export default function Student(props) {
   return (
-    <div className='d-flex m-1 student-content'>
+    <div className='m-1 student-content'>
       <Avatar alt='Remy Sharp' src='/static/images/avatar/1.jpg' />
       <div className='item' style={{ paddingRight: '1rem' }}>
         {props.slack_display_name}
       </div>
-
       <div>
         <Tooltip title='שאלות' arrow>
           <div>

@@ -25,9 +25,13 @@ export default function UserRating(props) {
   return (
     <Box
       sx={{
-        width: 200,
         display: 'flex',
         alignItems: 'center',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        '@media (max-width: 1000px)': {
+          flexDirection: 'column',
+        },
       }}
     >
       <Rating
@@ -39,7 +43,18 @@ export default function UserRating(props) {
         getLabelText={getLabelText}
         emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize='inherit' />}
       />
-      {props.value !== null && <Box sx={{ m: 2 }}>{labels[props.value]}</Box>}
+      {props.value !== null && (
+        <Box
+          sx={{
+            mr: 2,
+            '@media (max-width: 1000px)': {
+              mr: 0,
+            },
+          }}
+        >
+          {labels[props.value]}
+        </Box>
+      )}
     </Box>
   );
 }

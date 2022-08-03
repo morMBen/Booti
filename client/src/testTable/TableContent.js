@@ -1,13 +1,5 @@
 import React, { useState } from 'react';
-import {
-  TableCell,
-  TableRow,
-  TableHead,
-  TableSortLabel,
-  TableContainer,
-  Table,
-  TableBody,
-} from '@mui/material';
+import { TableContainer, Table, TableBody } from '@mui/material';
 import TableHeading from './TableHead';
 import StudentRow from './StudentRow';
 
@@ -19,7 +11,7 @@ const data = [
     answers: 20,
     right_answers: 10,
     reactions: 60,
-    rating: 5,
+    rating: 50,
   },
   {
     slack_user_id: 'vg3454rf',
@@ -27,13 +19,13 @@ const data = [
     questions: 5,
     answers: 0,
     right_answers: 0,
-    reactions: 3,
+    reactions: 30,
     rating: 1,
   },
   {
     slack_user_id: 'vg34srR',
     slack_display_name: 'ישראל ישראלי',
-    questions: 8,
+    questions: 80,
     answers: 3,
     right_answers: 1,
     reactions: 9,
@@ -66,7 +58,7 @@ const sortedRowInformation = (rowArr, comparator) => {
   return stabilizedRowArr.map((el) => el[0]);
 };
 
-function TableContent() {
+function TableContent({ data }) {
   const [orderDirection, setOrderDirection] = useState('asc');
   const [valueToOrderBy, setValueToOrderBy] = useState('name');
   //   const [page, setPage] = useState(0);
@@ -80,7 +72,7 @@ function TableContent() {
   };
 
   return (
-    <TableContainer>
+    <TableContainer sx={{ padding: '0 0.5rem' }}>
       <Table>
         <TableHeading
           orderDirection={orderDirection}
@@ -91,21 +83,15 @@ function TableContent() {
           {sortedRowInformation(data, getComparator(orderDirection, valueToOrderBy)).map(
             (person, index) => {
               return (
-                // <TableRow key={index}>
-                //   <TableCell>{person.slack_display_name}</TableCell>
-                //   <TableCell>{person.questions}</TableCell>
-                //   <TableCell>{person.answers}</TableCell>
-                //   <TableCell>{person.reactions}</TableCell>
-                //   <TableCell>{person.right_answers}</TableCell>
-                //   <TableCell>{person.rating}</TableCell>
-                // </TableRow>
                 <StudentRow
+                  key={person.slack_user_id}
                   questions={person.questions}
                   answers={person.answers}
                   reactions={person.reactions}
                   right_answers={person.right_answers}
                   rating={person.rating}
                   slack_display_name={person.slack_display_name}
+                  any_reactions={person.any_reactions}
                 />
               );
             }
