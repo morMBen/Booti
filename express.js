@@ -19,11 +19,12 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log('process1', process);
+  console.log('↓↓↓↓↓↓↓↓');
+  console.log(' SSL_PRIVATE_KEY →', process.env.SSL_PRIVATE_KEY);
   console.log('listen to port -> ', port);
 });
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.SSL_PRIVATE_KEY) {
   const httpsServer = https.createServer(
     {
       key: fs.readFileSync(process.env.SSL_PRIVATE_KEY),
