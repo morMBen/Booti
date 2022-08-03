@@ -19,9 +19,9 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, () => {
+  console.log("'process1', process.env.NODE_ENV");
   console.log('listen to port -> ', port);
 });
-console.log("'process1', process.env.NODE_ENV");
 
 if (process.env.NODE_ENV === 'production') {
   const httpsServer = https.createServer(
