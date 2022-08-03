@@ -19,7 +19,7 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log('process1', process.env.NODE_ENV);
+  console.log('process1', process);
   console.log('listen to port -> ', port);
 });
 
