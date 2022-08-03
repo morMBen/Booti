@@ -6,6 +6,7 @@ import { Container } from '@mui/material';
 import Student from 'components/students/Student';
 import API from 'api/Api';
 import MuiResponsiveness from 'MuiResponsiveness/MuiResponsiveness';
+import Appi from 'testTable/Appi';
 
 const data = [
   {
@@ -46,6 +47,7 @@ function App() {
   }, []);
   return (
     <div className='App'>
+      {/* <Appi /> */}
       <Header />
       <Container maxWidth='xl'>
         {users && (
@@ -57,7 +59,6 @@ function App() {
           />
         )}
       </Container>
-      {/* <MuiResponsiveness /> */}
     </div>
   );
 }

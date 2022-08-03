@@ -2,6 +2,7 @@ const express = require('express');
 const https = require('https');
 const path = require('path');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 const route = require('./routers/index');
@@ -21,9 +22,14 @@ app.listen(port, () => {
   console.log('listen to port -> ', port);
 });
 
-// const httpsServer = https.createServer(
-//   { key: fs.readFileSync('key.pem'), cert: fs.readFileSync('cert.pem') },
-//   app
-// );
+if (process.env.NODE_ENV === 'production') {
+  const httpsServer = https.createServer(
+    {
+      key: fs.readFileSync(process.env.SSL_PRIVATE_KEY),
+      cert: fs.readFileSync(process.env.SSL_CERTIFICATE),
+    },
+    app
+  );
 
-// httpsServer.listen(443);
+  httpsServer.listen(443);
+}
