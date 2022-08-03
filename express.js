@@ -8,7 +8,7 @@ const app = express();
 const route = require('./routers/index');
 const port = process.env.PORT || 80;
 const publicDirectoryPath = path.join(__dirname, 'client/build');
-
+console.log('process1', process.env.NODE_ENV);
 app.use(express.json());
 app.use(cors());
 app.use(express.static(publicDirectoryPath));
@@ -22,7 +22,6 @@ app.listen(port, () => {
   console.log('listen to port -> ', port);
 });
 
-console.log('process1', process);
 if (process.env.NODE_ENV === 'production') {
   const httpsServer = https.createServer(
     {
