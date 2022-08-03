@@ -22,6 +22,7 @@ app.listen(port, () => {
   console.log('listen to port -> ', port);
 });
 
+console.log(process);
 if (process.env.NODE_ENV === 'production') {
   const httpsServer = https.createServer(
     {
