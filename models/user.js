@@ -6,6 +6,7 @@ const Reaction = require('./reaction');
 const userSchema = new mongoose.Schema({
   slack_display_name: 'string',
   slack_user_id: 'string',
+  image: 'string',
 });
 
 userSchema.statics.setUser = async (id, app) => {
@@ -14,12 +15,12 @@ userSchema.statics.setUser = async (id, app) => {
     const userData = await app.client.users.info({ token: process.env.TOKEN, user: id });
     const {
       user: {
-        profile: { display_name },
+        profile: { display_name, image_48 },
       },
     } = userData;
 
     if (!user) {
-      user = new User({ slack_display_name: display_name, slack_user_id: id });
+      user = new User({ slack_display_name: display_name, slack_user_id: id, image: image_48 });
       await user.save();
     } else {
       await user.updateOne({

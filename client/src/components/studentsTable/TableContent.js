@@ -63,6 +63,7 @@ function TableContent({ data }) {
                   rating={person.rating}
                   slack_display_name={person.slack_display_name}
                   any_reactions={person.any_reactions}
+                  image={person.image}
                 />
               );
             }
