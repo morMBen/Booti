@@ -65,7 +65,7 @@ export default function StudentRow(props) {
       >
         <TableCell>
           <>
-            <Circle sx={{ color: 'primary.light' }} value={props.right_answers} />
+            <Circle sx={{ color: 'primary.light' }} value={props.answers} />
             <QuestionAnswerIcon sx={{ color: 'primary.light' }} className='m-2' />
           </>
         </TableCell>

@@ -15,14 +15,7 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
             onClick={createSortHandler('slack_display_name')}
             className='direction-rtl align-right'
           >
-            <p
-              style={{
-                textDecoration:
-                  valueToOrderBy === 'slack_display_name' ? 'underline #510f9390 2px' : 'inherit',
-              }}
-            >
-              שם
-            </p>
+            שם
           </TableSortLabel>
         </TableCell>
         <TableCell
@@ -38,14 +31,7 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
             direction={valueToOrderBy === 'questions' ? orderDirection : 'asc'}
             onClick={createSortHandler('questions')}
           >
-            <p
-              style={{
-                textDecoration:
-                  valueToOrderBy === 'questions' ? 'underline #510f9390 2px' : 'inherit',
-              }}
-            >
-              שאלות
-            </p>
+            שאלות
           </TableSortLabel>
         </TableCell>
         <TableCell
@@ -61,14 +47,7 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
             direction={valueToOrderBy === 'answers' ? orderDirection : 'asc'}
             onClick={createSortHandler('answers')}
           >
-            <p
-              style={{
-                textDecoration:
-                  valueToOrderBy === 'answers' ? 'underline #510f9390 2px' : 'inherit',
-              }}
-            >
-              תשובות
-            </p>
+            תשובות
           </TableSortLabel>
         </TableCell>
         <TableCell
@@ -84,14 +63,7 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
             direction={valueToOrderBy === 'any_reactions' ? orderDirection : 'asc'}
             onClick={createSortHandler('any_reactions')}
           >
-            <p
-              style={{
-                textDecoration:
-                  valueToOrderBy === 'any_reactions' ? 'underline #510f9390 2px' : 'inherit',
-              }}
-            >
-              יחס
-            </p>
+            יחס
           </TableSortLabel>
         </TableCell>
         <TableCell key='reactions'>
@@ -100,14 +72,7 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
             direction={valueToOrderBy === 'reactions' ? orderDirection : 'asc'}
             onClick={createSortHandler('reactions')}
           >
-            <p
-              style={{
-                textDecoration:
-                  valueToOrderBy === 'reactions' ? 'underline #510f9390 2px' : 'inherit',
-              }}
-            >
-              פתרונות
-            </p>
+            פתרונות
           </TableSortLabel>
         </TableCell>
 
@@ -124,14 +89,7 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
             direction={valueToOrderBy === 'right_answers' ? orderDirection : 'asc'}
             onClick={createSortHandler('right_answers')}
           >
-            <p
-              style={{
-                textDecoration:
-                  valueToOrderBy === 'right_answers' ? 'underline #510f9390 2px' : 'inherit',
-              }}
-            >
-              פתרונות מאומתים
-            </p>
+            פתרונות מאומתים
           </TableSortLabel>
         </TableCell>
         <TableCell key='rating'>
@@ -140,13 +98,7 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
             direction={valueToOrderBy === 'rating' ? orderDirection : 'asc'}
             onClick={createSortHandler('rating')}
           >
-            <p
-              style={{
-                textDecoration: valueToOrderBy === 'rating' ? 'underline #510f9390 2px' : 'inherit',
-              }}
-            >
-              רמה
-            </p>
+            רמה
           </TableSortLabel>
         </TableCell>
       </TableRow>

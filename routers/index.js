@@ -1,64 +1,10 @@
 const express = require('express');
+const { findOne } = require('../models/message.js');
 const Message = require('../models/message.js');
 const Reaction = require('../models/reaction.js');
 const User = require('../models/user.js');
 
 const route = express.Router();
-
-const calculateRating = (scores) => {
-  const { questions, answers, right_answers, reactions, any_reactions } = scores;
-  let score = 0;
-  score += questions * 10;
-  score += answers * 7;
-  score += (any_reactions - reactions) * 2;
-  score += right_answers * 25;
-  score += (reactions - right_answers) * 10;
-  console.log(score);
-  let rating = 0;
-  switch (true) {
-    case score >= 4860:
-      rating = 5;
-      break;
-    case score >= 4320:
-      rating = 4.5;
-      break;
-    case score >= 3780:
-      rating = 4;
-      break;
-    case score >= 3240:
-      rating = 3.5;
-      break;
-    case score >= 2700:
-      rating = 3;
-      break;
-    case score >= 2160:
-      rating = 2.5;
-      break;
-    case score >= 1620:
-      rating = 2;
-      break;
-    case score >= 1080:
-      rating = 1.5;
-      break;
-    case score >= 540:
-      rating = 1;
-      break;
-    case score >= 20:
-      rating = 0.5;
-      break;
-  }
-  return rating;
-};
-
-const getScores = async (user) => {
-  return {
-    questions: await user.questions,
-    answers: await user.answers,
-    right_answers: await user.solved_reaction,
-    reactions: await user.any_reactions,
-    any_reactions: await user.any_reactions,
-  };
-};
 
 route.get('/users', async (req, res) => {
   try {
@@ -94,8 +40,34 @@ route.get('/reset', async (req, res) => {
     res.send(e.message);
   }
 });
-// (async () => {
-//   let user = await User.findOne({ slack_display_name: 'Mordi 2' });
-//   console.log(await user.getAllRating());
-// })();
+(async () => {
+  // let user = await User.findOne({ slack_display_name: 'Mordi' });
+  // console.log(await user.answers);
+  // try {
+  //   const mes = await Message.findOne({ slack_user: '62eb999e0cd4a9613149c7f6' });
+  //   const message = await Message.create({
+  //     text: 'fasd',
+  //     slack_channel_id: 'C03S8TCT5L4',
+  //     slack_message_id: '1659597215.207409',
+  //     slack_user: '62eb999e0cd4a9613149c7f6',
+  //     slack_parent: '62eb9ee20cd4a9613149c82f',
+  //     __v: 0,
+  //   });
+  //   mes.Answers_to_question.push(message._id);
+  //   mes.save();
+  //   console.log(mes);
+  // } catch (err) {
+  //   console.log(err);
+  // }
+})();
 module.exports = route;
+
+// const obj = {
+//   _id: new ObjectId('62eb719f04e6882b7b63e329'),
+//   text: 'fasd',
+//   slack_channel_id: 'C03S8TCT5L4',
+//   slack_message_id: '1659597215.207409',
+//   slack_user: '62eb6c1b04e6882b7b63e234',
+//   slack_parent: null,
+//   __v: 0,
+// };

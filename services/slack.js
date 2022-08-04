@@ -24,6 +24,11 @@ app.message('', async ({ message, say }) => {
       slack_user: user._id,
       slack_parent: (oldMessage && oldMessage._id) || null,
     });
+
+    if (oldMessage) {
+      oldMessage.answers_to_question.push(message._id);
+      oldMessage.save();
+    }
   } catch (e) {
     console.log(e);
   }

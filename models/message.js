@@ -16,7 +16,22 @@ const messageSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Message',
   },
+  answers_to_question: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Message',
+    },
+  ],
 });
+
+messageSchema.virtual('answers').get(async function () {
+  return await Message.find({
+    slack_parent: this._id,
+  }).count();
+});
+
+messageSchema.set('toObject', { virtuals: true });
+messageSchema.set('toJSON', { virtuals: true });
 
 const Message = mongoose.model('Message', messageSchema);
 

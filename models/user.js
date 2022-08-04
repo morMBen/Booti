@@ -2,7 +2,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const Message = require('./message');
 const Reaction = require('./reaction');
-
+const calculateRating = require('../utils/calculateRating');
 const userSchema = new mongoose.Schema({
   slack_display_name: 'string',
   slack_user_id: 'string',
@@ -71,6 +71,23 @@ userSchema.virtual('questions').get(async function () {
   }).count();
 });
 
+userSchema.methods.getAllQuestions = async function () {
+  const messages = await Message.find({
+    slack_user: this._id,
+    slack_parent: null,
+  });
+  let res = [];
+  for (let i = 0; i < messages.length; i++) {
+    res.push(messages[i].answers);
+  }
+  res = await Promise.all(res);
+
+  res = res.map((e, i) => {
+    return { ...messages[i]._doc, num_of_answers: e };
+  });
+
+  return res;
+};
 userSchema.methods.getAllRating = async function () {
   const ratings = {
     questions: await this.questions,
@@ -83,51 +100,6 @@ userSchema.methods.getAllRating = async function () {
   ratings.rating = rating;
   ratings.score = score;
   return ratings;
-};
-
-const calculateRating = (scores) => {
-  const { questions, answers, right_answers, reactions, any_reactions } = scores;
-  let score = 0;
-  score += questions * 10;
-  score += answers * 7;
-  score += (any_reactions - reactions) * 2;
-  score += right_answers * 25;
-  score += (reactions - right_answers) * 10;
-
-  let rating = 0;
-  switch (true) {
-    case score >= 4860:
-      rating = 5;
-      break;
-    case score >= 4320:
-      rating = 4.5;
-      break;
-    case score >= 3780:
-      rating = 4;
-      break;
-    case score >= 3240:
-      rating = 3.5;
-      break;
-    case score >= 2700:
-      rating = 3;
-      break;
-    case score >= 2160:
-      rating = 2.5;
-      break;
-    case score >= 1620:
-      rating = 2;
-      break;
-    case score >= 1080:
-      rating = 1.5;
-      break;
-    case score >= 540:
-      rating = 1;
-      break;
-    case score >= 20:
-      rating = 0.5;
-      break;
-  }
-  return { rating, score };
 };
 
 userSchema.set('toObject', { virtuals: true });

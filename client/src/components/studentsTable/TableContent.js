@@ -30,7 +30,7 @@ const sortedRowInformation = (rowArr, comparator) => {
 };
 
 function TableContent({ data }) {
-  const [orderDirection, setOrderDirection] = useState('asc');
+  const [orderDirection, setOrderDirection] = useState('desc');
   const [valueToOrderBy, setValueToOrderBy] = useState('rating');
   //   const [page, setPage] = useState(0);
   //   const [rowsPerPage, setRowsPerPage] = useState(1);
