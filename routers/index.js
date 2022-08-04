@@ -51,6 +51,9 @@ route.get('/questions', async (req, res) => {
   const result = messages.map((message, index) => {
     return { ...message._doc, ...promiseArr[index] };
   });
+  // let mes = await messages[0].populate('slack_user');
+  // mes = await messages[0].slack_user;
+  // console.log(mes);
   res.send(result);
 });
 (async () => {

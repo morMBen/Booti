@@ -24,6 +24,8 @@ app.message('', async ({ message, say }) => {
       slack_user: user._id,
       slack_parent: (oldMessage && oldMessage._id) || null,
     });
+    mes = await messages[0].populate('slack_user');
+    mes = await messages[0].slack_user;
 
     if (oldMessage) {
       console.log(mes);
