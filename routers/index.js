@@ -39,12 +39,19 @@ route.get('/reset', async (req, res) => {
     res.send(e.message);
   }
 });
-route.get('/messages', async (req, res) => {
-  let messages = await Message.find({});
-  messages = messages.map((message) => {
-    return message;
+route.get('/questions', async (req, res) => {
+  let messages = await Message.find({
+    slack_parent: null,
   });
-  res.send(messages);
+  let promiseArr = [];
+  for (let i = 0; i < messages.length; i++) {
+    promiseArr.push(messages[i].getAllReactionOfThread());
+  }
+  promiseArr = await Promise.all(promiseArr);
+  const result = messages.map((message, index) => {
+    return { ...message._doc, ...promiseArr[index] };
+  });
+  res.send(result);
 });
 (async () => {
   // let mes = await Message.findOne({ _id: '62eba86c3ecc1b3d836c7eba' });

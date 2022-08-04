@@ -56,7 +56,7 @@ messageSchema.methods.getAllReactionOfThread = async function () {
   let all = await Promise.all(promisesObj.all);
   all = all.reduce((a, b) => a + b, 0) - good;
 
-  return { good, all };
+  return { thread_good_reactions: good, thread_any_reactions: all };
 };
 
 messageSchema.set('toObject', { virtuals: true });
