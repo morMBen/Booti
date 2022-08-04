@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Reaction = require('./reaction');
 
 const messageSchema = new mongoose.Schema({
   text: 'string',
@@ -29,6 +30,34 @@ messageSchema.virtual('answers').get(async function () {
     slack_parent: this._id,
   }).count();
 });
+
+messageSchema.virtual('any_reactions').get(async function () {
+  return await Reaction.find({
+    message: this._id,
+  }).count();
+});
+
+messageSchema.virtual('good_reaction').get(async function () {
+  return await Reaction.find({
+    message: this._id,
+    type: 'white_check_mark',
+  }).count();
+});
+
+messageSchema.methods.getAllReactionOfThread = async function () {
+  const allMessages = await Message.find({ _id: { $in: this.answers_to_question } });
+  const promisesObj = { good: [this.good_reaction], all: [this.any_reactions] };
+  for (let i = 0; i < allMessages.length; i++) {
+    promisesObj.good.push(allMessages[i].good_reaction);
+    promisesObj.all.push(allMessages[i].any_reactions);
+  }
+  let good = await Promise.all(promisesObj.good);
+  good = good.reduce((a, b) => a + b, 0);
+  let all = await Promise.all(promisesObj.all);
+  all = all.reduce((a, b) => a + b, 0) - good;
+
+  return { good, all };
+};
 
 messageSchema.set('toObject', { virtuals: true });
 messageSchema.set('toJSON', { virtuals: true });

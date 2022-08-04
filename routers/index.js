@@ -21,7 +21,6 @@ route.get('/users', async (req, res) => {
         };
         usersArr.push(data);
       }
-      // console.log(usersArr);
 
       res.send(usersArr);
     });
@@ -40,34 +39,17 @@ route.get('/reset', async (req, res) => {
     res.send(e.message);
   }
 });
+route.get('/messages', async (req, res) => {
+  let messages = await Message.find({});
+  messages = messages.map((message) => {
+    return message;
+  });
+  res.send(messages);
+});
 (async () => {
-  // let user = await User.findOne({ slack_display_name: 'Mordi' });
-  // console.log(await user.answers);
-  // try {
-  //   const mes = await Message.findOne({ slack_user: '62eb999e0cd4a9613149c7f6' });
-  //   const message = await Message.create({
-  //     text: 'fasd',
-  //     slack_channel_id: 'C03S8TCT5L4',
-  //     slack_message_id: '1659597215.207409',
-  //     slack_user: '62eb999e0cd4a9613149c7f6',
-  //     slack_parent: '62eb9ee20cd4a9613149c82f',
-  //     __v: 0,
-  //   });
-  //   mes.Answers_to_question.push(message._id);
-  //   mes.save();
-  //   console.log(mes);
-  // } catch (err) {
-  //   console.log(err);
-  // }
+  // let mes = await Message.findOne({ _id: '62eba86c3ecc1b3d836c7eba' });
+  // console.log(await mes.any_reactions);
+  // console.log(await mes.good_reaction);
+  // console.log(await mes.getAllReactionOfThread());
 })();
 module.exports = route;
-
-// const obj = {
-//   _id: new ObjectId('62eb719f04e6882b7b63e329'),
-//   text: 'fasd',
-//   slack_channel_id: 'C03S8TCT5L4',
-//   slack_message_id: '1659597215.207409',
-//   slack_user: '62eb6c1b04e6882b7b63e234',
-//   slack_parent: null,
-//   __v: 0,
-// };
