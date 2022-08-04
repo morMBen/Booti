@@ -17,15 +17,13 @@ app.message('', async ({ message, say }) => {
     const user = await User.setUser(message.user, app);
     const oldMessage = await Message.findOne({ slack_message_id: message.thread_ts });
 
-    let mes = await Message.create({
+    const mes = await Message.create({
       text: message.text,
       slack_channel_id: message.channel,
       slack_message_id: message.event_ts, //!! check letter
       slack_user: user._id,
       slack_parent: (oldMessage && oldMessage._id) || null,
     });
-    mes = await mes.populate('answers');
-    mes = await mes.answers;
 
     if (oldMessage) {
       console.log(mes);
