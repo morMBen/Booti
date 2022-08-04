@@ -70,7 +70,7 @@ route.get('/users', async (req, res) => {
         const data = {
           slack_display_name: users[i].slack_display_name,
           slack_user_id: users[i].slack_user_id,
-          slack_user_id: users[i].slack_user_id,
+          image: users[i].image,
           ...rating,
         };
         usersArr.push(data);

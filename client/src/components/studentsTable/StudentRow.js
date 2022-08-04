@@ -49,8 +49,8 @@ export default function StudentRow(props) {
       >
         <TableCell>
           <>
-            <Circle color='secondary' value={props.questions} />
-            <QuizIcon color='secondary' className='m-2' />
+            <Circle sx={{ color: 'primary.dark' }} value={props.questions} />
+            <QuizIcon sx={{ color: 'primary.dark' }} className='m-2' />
           </>
         </TableCell>
       </Tooltip>
@@ -65,8 +65,8 @@ export default function StudentRow(props) {
       >
         <TableCell>
           <>
-            <Circle color='secondary' value={props.right_answers} />
-            <QuestionAnswerIcon color='secondary' className='m-2' />
+            <Circle sx={{ color: 'primary.light' }} value={props.right_answers} />
+            <QuestionAnswerIcon sx={{ color: 'primary.light' }} className='m-2' />
           </>
         </TableCell>
       </Tooltip>
@@ -81,16 +81,16 @@ export default function StudentRow(props) {
       >
         <TableCell>
           <>
-            <Circle color='primary' value={props.any_reactions} />
-            <ThumbUpIcon color='primary' className='m-2' />
+            <Circle sx={{ color: 'primary.blue' }} value={props.any_reactions} />
+            <ThumbUpIcon sx={{ color: 'primary.blue' }} className='m-2' />
           </>
         </TableCell>
       </Tooltip>
       <Tooltip title='פתר את הבעיה, אך לא לשואל השאלה.' arrow>
         <TableCell>
           <>
-            <Circle color='success' value={props.reactions} />
-            <DoneIcon color='success' className='m-2' />
+            <Circle color='secondary' value={props.reactions} />
+            <DoneIcon color='secondary' className='m-2' />
           </>
         </TableCell>
       </Tooltip>

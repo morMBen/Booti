@@ -5,12 +5,13 @@ import API from 'api/Api';
 import TableContent from 'components/studentsTable/TableContent';
 import WaitingScreen from 'components/waitingScreen/WaitingScreen';
 import { createTheme, ThemeProvider } from '@mui/material';
-import { deepOrange, green, lightBlue, lightGreen, lime } from '@mui/material/colors';
+import { deepOrange, green, lightBlue, teal, lime } from '@mui/material/colors';
 
 const customTheme = createTheme({
   palette: {
-    primary: { main: '#510F93' },
-    secondary: lightGreen,
+    // @ts-ignore
+    primary: { main: '#510F93', dark: '#28074A', light: '#D4DEFF', blue: '#007FFF' },
+    secondary: teal,
     error: deepOrange,
     warning: lime,
     info: lightBlue,
