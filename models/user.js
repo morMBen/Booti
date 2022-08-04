@@ -19,7 +19,6 @@ userSchema.statics.setUser = async (id, app) => {
       },
     } = userData;
 
-    console.log('image_48 →', image_48);
     if (!user) {
       user = new User({ slack_display_name: display_name, slack_user_id: id, image: image_48 });
       await user.save();
@@ -30,7 +29,6 @@ userSchema.statics.setUser = async (id, app) => {
         slack_user_id: id,
       });
     }
-    console.log('user →', user);
     return user;
   } catch (e) {
     console.log(e);
