@@ -56,7 +56,7 @@ const getParentUser = async (message) => {
 app.event('reaction_added', async ({ event, client }) => {
   try {
     const user = await app.client.users.info({ token: process.env.TOKEN, user: event.user });
-    console.log(user.user.image_48);
+    console.log(user.user.profile.image_48);
     const sender = await User.setUser(event.user, app);
     const receiver = await User.setUser(event.item_user, app);
     const message = await Message.findOne({ slack_message_id: event.item.ts });
