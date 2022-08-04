@@ -5,12 +5,16 @@
 }
 html {
   direction: rtl;
+  color: #510f9390;
 }
 
 .App {
   text-align: center;
 }
 
+.MuiTableHead-root .MuiTableCell-root {
+  font-weight: bold !important;
+}
 .MuiTableCell-root {
   direction: rtl;
   text-align: center !important;

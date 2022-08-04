@@ -8,14 +8,21 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
   return (
     <TableHead>
       <TableRow className='m-1 student-content'>
-        <TableCell key='slack_display_name ' className='rtl'>
+        <TableCell key='slack_display_name' className='rtl'>
           <TableSortLabel
             active={valueToOrderBy === 'slack_display_name'}
             direction={valueToOrderBy === 'slack_display_name' ? orderDirection : 'asc'}
             onClick={createSortHandler('slack_display_name')}
             className='direction-rtl align-right'
           >
-            שם
+            <p
+              style={{
+                textDecoration:
+                  valueToOrderBy === 'slack_display_name' ? 'underline #510f9390 2px' : 'inherit',
+              }}
+            >
+              שם
+            </p>
           </TableSortLabel>
         </TableCell>
         <TableCell
@@ -31,7 +38,14 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
             direction={valueToOrderBy === 'questions' ? orderDirection : 'asc'}
             onClick={createSortHandler('questions')}
           >
-            שאלות
+            <p
+              style={{
+                textDecoration:
+                  valueToOrderBy === 'questions' ? 'underline #510f9390 2px' : 'inherit',
+              }}
+            >
+              שאלות
+            </p>
           </TableSortLabel>
         </TableCell>
         <TableCell
@@ -47,7 +61,14 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
             direction={valueToOrderBy === 'answers' ? orderDirection : 'asc'}
             onClick={createSortHandler('answers')}
           >
-            תשובות
+            <p
+              style={{
+                textDecoration:
+                  valueToOrderBy === 'answers' ? 'underline #510f9390 2px' : 'inherit',
+              }}
+            >
+              תשובות
+            </p>
           </TableSortLabel>
         </TableCell>
         <TableCell
@@ -63,7 +84,14 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
             direction={valueToOrderBy === 'any_reactions' ? orderDirection : 'asc'}
             onClick={createSortHandler('any_reactions')}
           >
-            יחס
+            <p
+              style={{
+                textDecoration:
+                  valueToOrderBy === 'any_reactions' ? 'underline #510f9390 2px' : 'inherit',
+              }}
+            >
+              יחס
+            </p>
           </TableSortLabel>
         </TableCell>
         <TableCell key='reactions'>
@@ -72,7 +100,14 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
             direction={valueToOrderBy === 'reactions' ? orderDirection : 'asc'}
             onClick={createSortHandler('reactions')}
           >
-            פתרונות
+            <p
+              style={{
+                textDecoration:
+                  valueToOrderBy === 'reactions' ? 'underline #510f9390 2px' : 'inherit',
+              }}
+            >
+              פתרונות
+            </p>
           </TableSortLabel>
         </TableCell>
 
@@ -89,7 +124,14 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
             direction={valueToOrderBy === 'right_answers' ? orderDirection : 'asc'}
             onClick={createSortHandler('right_answers')}
           >
-            פתרונות מאומתים
+            <p
+              style={{
+                textDecoration:
+                  valueToOrderBy === 'right_answers' ? 'underline #510f9390 2px' : 'inherit',
+              }}
+            >
+              פתרונות מאומתים
+            </p>
           </TableSortLabel>
         </TableCell>
         <TableCell key='rating'>
@@ -98,7 +140,13 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
             direction={valueToOrderBy === 'rating' ? orderDirection : 'asc'}
             onClick={createSortHandler('rating')}
           >
-            רמה
+            <p
+              style={{
+                textDecoration: valueToOrderBy === 'rating' ? 'underline #510f9390 2px' : 'inherit',
+              }}
+            >
+              רמה
+            </p>
           </TableSortLabel>
         </TableCell>
       </TableRow>
