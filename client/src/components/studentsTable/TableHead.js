@@ -1,4 +1,4 @@
-import { TableCell, TableRow, TableHead, TableBody, TableSortLabel } from '@mui/material';
+import { TableCell, TableRow, TableHead, TableSortLabel } from '@mui/material';
 import React from 'react';
 
 function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
@@ -21,7 +21,7 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
         <TableCell
           key='questions'
           sx={{
-            '@media (max-width: 768px)': {
+            '@media (max-width: 750px)': {
               display: 'none',
             },
           }}
@@ -37,7 +37,7 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
         <TableCell
           key='answers'
           sx={{
-            '@media (max-width: 413px)': {
+            '@media (max-width: 630px)': {
               display: 'none',
             },
           }}
@@ -66,14 +66,7 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
             יחס
           </TableSortLabel>
         </TableCell>
-        <TableCell
-          key='reactions'
-          sx={{
-            '@media (max-width: 600px)': {
-              display: 'none',
-            },
-          }}
-        >
+        <TableCell key='reactions'>
           <TableSortLabel
             active={valueToOrderBy === 'reactions'}
             direction={valueToOrderBy === 'reactions' ? orderDirection : 'asc'}
@@ -83,7 +76,14 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
           </TableSortLabel>
         </TableCell>
 
-        <TableCell key='right_answers'>
+        <TableCell
+          key='right_answers'
+          sx={{
+            '@media (max-width: 425px)': {
+              display: 'none',
+            },
+          }}
+        >
           <TableSortLabel
             active={valueToOrderBy === 'right_answers'}
             direction={valueToOrderBy === 'right_answers' ? orderDirection : 'asc'}

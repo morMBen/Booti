@@ -29,9 +29,7 @@ export default function UserRating(props) {
         alignItems: 'center',
         justifyContent: 'center',
         flexWrap: 'wrap',
-        '@media (max-width: 1000px)': {
-          flexDirection: 'column',
-        },
+        flexDirection: 'column',
       }}
     >
       <Rating
@@ -47,6 +45,7 @@ export default function UserRating(props) {
         <Box
           sx={{
             mr: 2,
+            mt: 1,
             '@media (max-width: 1000px)': {
               mr: 0,
             },

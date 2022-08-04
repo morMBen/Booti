@@ -18,9 +18,6 @@ html {
 
 @media (max-width: 1000px) {
   .MuiTableBody-root .MuiTableCell-root {
-    padding: 0.3rem 0 !important;
-  }
-  .MuiTableBody-root .MuiTableCell-root {
     padding: 0.3rem 0rem !important;
   }
 }

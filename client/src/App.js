@@ -1,12 +1,22 @@
 import './App.css';
 import React from 'react';
-import Students from 'components/students/students';
 import Header from 'components/header/header';
-import { Container } from '@mui/material';
-import Student from 'components/students/Student';
 import API from 'api/Api';
-import MuiResponsiveness from 'MuiResponsiveness/MuiResponsiveness';
-import TableContent from 'testTable/TableContent';
+import TableContent from 'components/studentsTable/TableContent';
+import WaitingScreen from 'components/waitingScreen/WaitingScreen';
+import { createTheme, ThemeProvider } from '@mui/material';
+import { deepOrange, green, lightBlue, lightGreen, lime } from '@mui/material/colors';
+
+const customTheme = createTheme({
+  palette: {
+    primary: { main: '#510F93' },
+    secondary: lightGreen,
+    error: deepOrange,
+    warning: lime,
+    info: lightBlue,
+    success: green,
+  },
+});
 
 const data = [
   {
@@ -42,24 +52,18 @@ function App() {
   const [users, setUsers] = React.useState(null);
   React.useEffect(() => {
     API.get('/users').then((res) => {
+      console.log(res);
       setUsers(res.data);
     });
   }, []);
   return (
-    <div className='App'>
-      <Header />
-      {users && <TableContent data={users} />}
-      {/* <Container maxWidth='xl'> */}
-      {/* {users && (
-        <Students
-          data={users}
-          render={(student) => {
-            return <Student {...student} />;
-          }}
-        />
-      )} */}
-      {/* </Container> */}
-    </div>
+    <ThemeProvider theme={customTheme}>
+      <div className='App'>
+        <Header />
+        {users && <TableContent data={users} />}
+        {!users && <WaitingScreen />}
+      </div>
+    </ThemeProvider>
   );
 }
 

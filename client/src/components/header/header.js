@@ -92,7 +92,11 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            {/* <img
+              style={{ maxHeight: '40px' }}
+              src='https://static.wixstatic.com/media/5bd04f_9fec7b63820f4b5ca236ce4d9e08eb3a~mv2.png/v1/fill/w_164,h_60,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Appleseeds_LOGO_3_Hebrew_4x.png'
+              alt='white appleseeds logo'
+            /> */}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -107,7 +111,12 @@ const ResponsiveAppBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title='Open settings'>
+            <img
+              style={{ maxHeight: '40px' }}
+              src='https://static.wixstatic.com/media/5bd04f_9fec7b63820f4b5ca236ce4d9e08eb3a~mv2.png/v1/fill/w_164,h_60,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Appleseeds_LOGO_3_Hebrew_4x.png'
+              alt='white appleseeds logo'
+            />
+            {/* <Tooltip title='Open settings'>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt='Remy Sharp' src='/static/images/avatar/2.jpg' />
               </IconButton>
@@ -133,7 +142,7 @@ const ResponsiveAppBar = () => {
                   <Typography textAlign='center'>{setting}</Typography>
                 </MenuItem>
               ))}
-            </Menu>
+            </Menu> */}
           </Box>
         </Toolbar>
       </Container>

@@ -35,7 +35,7 @@ export default function StudentRow(props) {
         title='שאלות'
         arrow
         sx={{
-          '@media (max-width: 768px)': {
+          '@media (max-width: 750px)': {
             display: 'none',
           },
         }}
@@ -51,7 +51,7 @@ export default function StudentRow(props) {
         title='תשובות'
         arrow
         sx={{
-          '@media (max-width: 413px)': {
+          '@media (max-width: 630px)': {
             display: 'none',
           },
         }}
@@ -79,23 +79,23 @@ export default function StudentRow(props) {
           </>
         </TableCell>
       </Tooltip>
-      <Tooltip
-        title='פתר את הבעיה, אך לא לשואל השאלה.'
-        arrow
-        sx={{
-          '@media (max-width: 600px)': {
-            display: 'none',
-          },
-        }}
-      >
+      <Tooltip title='פתר את הבעיה, אך לא לשואל השאלה.' arrow>
         <TableCell>
           <>
-            <Circle color='primary' value={props.reactions} />
+            <Circle color='success' value={props.reactions} />
             <DoneIcon color='success' className='m-2' />
           </>
         </TableCell>
       </Tooltip>
-      <Tooltip title='פתר את הבעיה לשואל השאלה.' arrow>
+      <Tooltip
+        title='פתר את הבעיה לשואל השאלה.'
+        arrow
+        sx={{
+          '@media (max-width: 425px)': {
+            display: 'none',
+          },
+        }}
+      >
         <TableCell>
           <>
             <Circle color='success' value={props.right_answers} />
