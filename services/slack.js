@@ -26,6 +26,7 @@ app.message('', async ({ message, say }) => {
     });
 
     if (oldMessage) {
+      console.log(mes);
       oldMessage.answers_to_question.push(mes._id);
       oldMessage.save();
     }
