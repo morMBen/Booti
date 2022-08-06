@@ -11,13 +11,16 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { useNavigate } from 'react-router-dom';
 
 import QuizIcon from '@mui/icons-material/Quiz';
 
 const pages = ['תלמידים', 'שאלות', 'תשובות'];
+const pagesPath = ['/', 'questions', 'answers'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
+  let navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -68,8 +71,15 @@ const ResponsiveAppBar = () => {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+              {pages.map((page, index) => (
+                <MenuItem
+                  key={page}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    console.log(index);
+                    navigate(pagesPath[index]);
+                  }}
+                >
                   <Typography textAlign='center'>{page}</Typography>
                 </MenuItem>
               ))}

@@ -1,35 +1,10 @@
 import React, { useState } from 'react';
 import { TableContainer, Table, TableBody } from '@mui/material';
-import TableHeading from './TableHead';
+import TableHeading from './StudentsTableHead';
 import StudentRow from './StudentRow';
+import { getComparator, sortedRowInformation } from 'utils/sortTable';
 
-const descendingComparator = (a, b, orderBy) => {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-};
-
-const getComparator = (order, orderBy) => {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-};
-
-const sortedRowInformation = (rowArr, comparator) => {
-  const stabilizedRowArr = rowArr.map((el, index) => [el, index]);
-  stabilizedRowArr.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) return order;
-    return a[1] - b[1];
-  });
-  return stabilizedRowArr.map((el) => el[0]);
-};
-
-function TableContent({ data }) {
+function StudentsTableContent({ data }) {
   const [orderDirection, setOrderDirection] = useState('desc');
   const [valueToOrderBy, setValueToOrderBy] = useState('rating');
   //   const [page, setPage] = useState(0);
@@ -74,4 +49,4 @@ function TableContent({ data }) {
   );
 }
 
-export default TableContent;
+export default StudentsTableContent;

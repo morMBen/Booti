@@ -1,7 +1,7 @@
 import { TableCell, TableRow, TableHead, TableSortLabel } from '@mui/material';
 import React from 'react';
 
-function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
+function QuestionsTableHead({ valueToOrderBy, orderDirection, handleRequestSort }) {
   const createSortHandler = (property) => (event) => {
     handleRequestSort(event, property);
   };
@@ -19,7 +19,7 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
           </TableSortLabel>
         </TableCell>
         <TableCell
-          key='questions'
+          key='question'
           sx={{
             '@media (max-width: 750px)': {
               display: 'none',
@@ -27,21 +27,14 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
           }}
         >
           <TableSortLabel
-            active={valueToOrderBy === 'questions'}
-            direction={valueToOrderBy === 'questions' ? orderDirection : 'asc'}
-            onClick={createSortHandler('questions')}
+            active={valueToOrderBy === 'question'}
+            direction={valueToOrderBy === 'question' ? orderDirection : 'asc'}
+            onClick={createSortHandler('question')}
           >
-            שאלות
+            שאלה
           </TableSortLabel>
         </TableCell>
-        <TableCell
-          key='answers'
-          sx={{
-            '@media (max-width: 630px)': {
-              display: 'none',
-            },
-          }}
-        >
+        <TableCell key='answers'>
           <TableSortLabel
             active={valueToOrderBy === 'answers'}
             direction={valueToOrderBy === 'answers' ? orderDirection : 'asc'}
@@ -66,18 +59,25 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
             יחס
           </TableSortLabel>
         </TableCell>
-        <TableCell key='reactions'>
+        <TableCell
+          key='reactions'
+          sx={{
+            '@media (max-width: 630px)': {
+              display: 'none',
+            },
+          }}
+        >
           <TableSortLabel
             active={valueToOrderBy === 'reactions'}
             direction={valueToOrderBy === 'reactions' ? orderDirection : 'asc'}
             onClick={createSortHandler('reactions')}
           >
-            פתרונות
+            נעזרו
           </TableSortLabel>
         </TableCell>
 
         <TableCell
-          key='right_answers'
+          key='right_answer'
           sx={{
             '@media (max-width: 425px)': {
               display: 'none',
@@ -85,20 +85,20 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
           }}
         >
           <TableSortLabel
-            active={valueToOrderBy === 'right_answers'}
-            direction={valueToOrderBy === 'right_answers' ? orderDirection : 'asc'}
-            onClick={createSortHandler('right_answers')}
+            active={valueToOrderBy === 'solved_user'}
+            direction={valueToOrderBy === 'solved_user' ? orderDirection : 'asc'}
+            onClick={createSortHandler('solved_user')}
           >
-            פתרונות מאומתים
+            יש פתרון
           </TableSortLabel>
         </TableCell>
-        <TableCell key='rating'>
+        <TableCell key='channel'>
           <TableSortLabel
-            active={valueToOrderBy === 'rating'}
-            direction={valueToOrderBy === 'rating' ? orderDirection : 'asc'}
-            onClick={createSortHandler('rating')}
+            active={valueToOrderBy === 'channel'}
+            direction={valueToOrderBy === 'channel' ? orderDirection : 'asc'}
+            onClick={createSortHandler('channel')}
           >
-            רמה
+            נושא
           </TableSortLabel>
         </TableCell>
       </TableRow>
@@ -106,4 +106,4 @@ function TableHeading({ valueToOrderBy, orderDirection, handleRequestSort }) {
   );
 }
 
-export default TableHeading;
+export default QuestionsTableHead;

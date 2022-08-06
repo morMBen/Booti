@@ -45,9 +45,13 @@ route.get('/questions', async (req, res) => {
   });
   let promiseArr = [];
   for (let i = 0; i < messages.length; i++) {
+    let mes = await messages[i].populate('slack_user');
+    mes = await mes.slack_user;
+
     promiseArr.push(messages[i].getAllReactionOfThread());
   }
   promiseArr = await Promise.all(promiseArr);
+
   const result = messages.map((message, index) => {
     return { ...message._doc, ...promiseArr[index] };
   });

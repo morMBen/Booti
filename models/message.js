@@ -46,6 +46,7 @@ messageSchema.virtual('good_reaction').get(async function () {
 
 messageSchema.methods.getAllReactionOfThread = async function () {
   const allMessages = await Message.find({ _id: { $in: this.answers_to_question } });
+  console.log(this);
   const promisesObj = { good: [this.good_reaction], all: [this.any_reactions] };
   for (let i = 0; i < allMessages.length; i++) {
     promisesObj.good.push(allMessages[i].good_reaction);
