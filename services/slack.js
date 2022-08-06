@@ -50,7 +50,7 @@ app.event('reaction_removed', async ({ event, client }) => {
 
 const getParentUser = async (message) => {
   let mes = message;
-  if (mes.slack_parent) {
+  if (mes && mes.slack_parent) {
     mes = await mes.populate('slack_parent');
     mes = await mes.slack_parent;
   }
