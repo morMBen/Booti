@@ -37,8 +37,13 @@ export default function QuestionRow(props) {
           {props.slack_user.slack_display_name}
         </Box>
       </TableCell>
+      <Tooltip title={props.question} arrow>
+        <TableCell>
+          <>{props.question.length > 15 ? props.question.slice(0, 15) + '...' : props.question}</>
+        </TableCell>
+      </Tooltip>
       <Tooltip
-        title={props.question}
+        title='תשובות'
         arrow
         sx={{
           '@media (max-width: 750px)': {
@@ -46,11 +51,6 @@ export default function QuestionRow(props) {
           },
         }}
       >
-        <TableCell>
-          <>{props.question.length > 15 ? props.question.slice(0, 15) + '...' : props.question}</>
-        </TableCell>
-      </Tooltip>
-      <Tooltip title='תשובות' arrow>
         <TableCell>
           <>
             <Circle

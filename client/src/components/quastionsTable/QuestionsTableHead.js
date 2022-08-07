@@ -18,14 +18,7 @@ function QuestionsTableHead({ valueToOrderBy, orderDirection, handleRequestSort 
             שם
           </TableSortLabel>
         </TableCell>
-        <TableCell
-          key='question'
-          sx={{
-            '@media (max-width: 750px)': {
-              display: 'none',
-            },
-          }}
-        >
+        <TableCell key='question'>
           <TableSortLabel
             active={valueToOrderBy === 'question'}
             direction={valueToOrderBy === 'question' ? orderDirection : 'asc'}
@@ -34,7 +27,14 @@ function QuestionsTableHead({ valueToOrderBy, orderDirection, handleRequestSort 
             שאלה
           </TableSortLabel>
         </TableCell>
-        <TableCell key='answers'>
+        <TableCell
+          key='answers'
+          sx={{
+            '@media (max-width: 750px)': {
+              display: 'none',
+            },
+          }}
+        >
           <TableSortLabel
             active={valueToOrderBy === 'answers'}
             direction={valueToOrderBy === 'answers' ? orderDirection : 'asc'}
