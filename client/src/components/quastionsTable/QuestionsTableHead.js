@@ -52,9 +52,9 @@ function QuestionsTableHead({ valueToOrderBy, orderDirection, handleRequestSort 
           }}
         >
           <TableSortLabel
-            active={valueToOrderBy === 'any_reactions'}
-            direction={valueToOrderBy === 'any_reactions' ? orderDirection : 'asc'}
-            onClick={createSortHandler('any_reactions')}
+            active={valueToOrderBy === 'thread_any_reactions'}
+            direction={valueToOrderBy === 'thread_any_reactions' ? orderDirection : 'asc'}
+            onClick={createSortHandler('thread_any_reactions')}
           >
             יחס
           </TableSortLabel>
@@ -68,9 +68,9 @@ function QuestionsTableHead({ valueToOrderBy, orderDirection, handleRequestSort 
           }}
         >
           <TableSortLabel
-            active={valueToOrderBy === 'reactions'}
-            direction={valueToOrderBy === 'reactions' ? orderDirection : 'asc'}
-            onClick={createSortHandler('reactions')}
+            active={valueToOrderBy === 'thread_good_reactions'}
+            direction={valueToOrderBy === 'thread_good_reactions' ? orderDirection : 'asc'}
+            onClick={createSortHandler('thread_good_reactions')}
           >
             נעזרו
           </TableSortLabel>
