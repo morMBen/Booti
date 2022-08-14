@@ -57,9 +57,13 @@ route.get('/questions', async (req, res) => {
   res.send(result);
 });
 route.get('/question-thread/:message_id', async (req, res) => {
-  const { message_id } = req.params;
-  const mes = await Message.getFullThread(message_id);
-  res.send(mes);
+  try {
+    const { message_id } = req.params;
+    const mes = await Message.getFullThread(message_id);
+    res.json(mes);
+  } catch (e) {
+    res.send(e.message);
+  }
 });
 // (async () => {
 // let mes = await Message.findOne({ _id: '62eba86c3ecc1b3d836c7eba' });
