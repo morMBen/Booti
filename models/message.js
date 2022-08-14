@@ -64,6 +64,8 @@ messageSchema.statics.getFullThread = async function (message_id) {
   const mes = await Message.findOne({ _id: message_id });
   let ans = await mes.populate('answers_to_question');
   ans = await mes.answers_to_question;
+  let user = await mes.populate('slack_user');
+  user = await mes.slack_user;
 
   const response = { ...mes._doc };
 
@@ -72,6 +74,8 @@ messageSchema.statics.getFullThread = async function (message_id) {
 
   const answers_to_question_arr = [];
   for (let i = 0; i < response.answers_to_question.length; i++) {
+    let u = await mes.answers_to_question[i].populate('slack_user');
+    u = await mes.answers_to_question[i].slack_user;
     const a = { ...mes.answers_to_question[i]._doc };
     a.good_reaction = await mes.answers_to_question[i].good_reaction;
     a.any_reactions = await mes.answers_to_question[i].any_reactions;
