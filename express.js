@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.static(publicDirectoryPath));
 app.use('/api', route);
 
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.resolve(publicDirectoryPath, 'index.html'));
 });
 
