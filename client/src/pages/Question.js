@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import API from 'api/Api';
-import Card from '@mui/material/Card';
 import WaitingScreen from 'components/waitingScreen/WaitingScreen';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import DoneIcon from '@mui/icons-material/Done';
@@ -9,18 +8,12 @@ import GppGoodIcon from '@mui/icons-material/GppGood';
 import {
   Avatar,
   Box,
-  Chip,
-  Divider,
-  IconButton,
-  Stack,
-  Switch,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Typography,
 } from '@mui/material';
 function Question() {
   const [questionData, setQuestionData] = useState(null);
