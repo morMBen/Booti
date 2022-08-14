@@ -36,9 +36,9 @@ function QuestionsTableHead({ valueToOrderBy, orderDirection, handleRequestSort 
           }}
         >
           <TableSortLabel
-            active={valueToOrderBy === 'answers'}
-            direction={valueToOrderBy === 'answers' ? orderDirection : 'asc'}
-            onClick={createSortHandler('answers')}
+            active={valueToOrderBy === 'answers_to_question'}
+            direction={valueToOrderBy === 'answers_to_question' ? orderDirection : 'asc'}
+            onClick={createSortHandler('answers_to_question')}
           >
             תשובות
           </TableSortLabel>

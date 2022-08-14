@@ -20,7 +20,7 @@ function Questions() {
           isParent: d.slack_parent ? true : false,
           slack_message_id: d.slack_message_id,
           slack_channel_id: d.slack_channel_id,
-          answers_to_question: d.answers_to_question,
+          answers_to_question: d.answers_to_question.length,
           time_stamp: d.slack_message_id,
           solved_user: d.solved_user ? 'כן' : 'לא',
         };

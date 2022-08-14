@@ -92,11 +92,11 @@ function StudentsTableHead({ valueToOrderBy, orderDirection, handleRequestSort }
             פתרונות מאומתים
           </TableSortLabel>
         </TableCell>
-        <TableCell key='rating'>
+        <TableCell key='score'>
           <TableSortLabel
-            active={valueToOrderBy === 'rating'}
-            direction={valueToOrderBy === 'rating' ? orderDirection : 'asc'}
-            onClick={createSortHandler('rating')}
+            active={valueToOrderBy === 'score'}
+            direction={valueToOrderBy === 'score' ? orderDirection : 'asc'}
+            onClick={createSortHandler('score')}
           >
             רמה
           </TableSortLabel>

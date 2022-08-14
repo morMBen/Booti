@@ -9,37 +9,42 @@ import Circle from 'components/circle/circle';
 import { Box, TableCell, TableRow } from '@mui/material';
 import GppGoodIcon from '@mui/icons-material/GppGood';
 import GppBadIcon from '@mui/icons-material/GppBad';
+import Link from '@mui/material/Link';
 
 export default function QuestionRow(props) {
   return (
     <TableRow className='m-1 student-content'>
       <TableCell className='item' style={{ paddingRight: '0rem' }}>
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            marginRight: '3rem',
-            '@media (max-width: 1000px)': {
-              marginRight: '0',
-              flexDirection: 'column',
-            },
-          }}
-        >
-          <Avatar
-            alt='Remy Sharp'
-            src={
-              props.slack_user.image ||
-              'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8='
-            }
-            className='ml-2'
-          />
-          {props.slack_user.slack_display_name}
-        </Box>
+        <Link href={`/students/${props.slack_user_id}`} underline='none' color='inherit'>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              marginRight: '3rem',
+              '@media (max-width: 1000px)': {
+                marginRight: '0',
+                flexDirection: 'column',
+              },
+            }}
+          >
+            <Avatar
+              alt='Remy Sharp'
+              src={
+                props.slack_user.image ||
+                'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8='
+              }
+              className='ml-2'
+            />
+            {props.slack_user.slack_display_name}
+          </Box>
+        </Link>
       </TableCell>
       <Tooltip title={props.question} arrow>
         <TableCell>
-          <>{props.question.length > 15 ? props.question.slice(0, 15) + '...' : props.question}</>
+          <Link href={`/questions/${props.message_id}`} underline='none' color='inherit'>
+            <>{props.question.length > 15 ? props.question.slice(0, 15) + '...' : props.question}</>
+          </Link>
         </TableCell>
       </Tooltip>
       <Tooltip
@@ -52,13 +57,10 @@ export default function QuestionRow(props) {
         }}
       >
         <TableCell>
-          <>
-            <Circle
-              sx={{ color: 'primary.light' }}
-              value={Number(props.answers_to_question.length)}
-            />
+          <Link href={`/questions/${props.message_id}`} underline='none' color='inherit'>
+            <Circle sx={{ color: 'primary.light' }} value={props.answers_to_question} />
             <QuestionAnswerIcon sx={{ color: 'primary.light' }} className='m-2' />
-          </>
+          </Link>
         </TableCell>
       </Tooltip>
       <Tooltip

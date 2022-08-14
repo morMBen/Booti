@@ -1,5 +1,4 @@
 const express = require('express');
-const { findOne } = require('../models/message.js');
 const Message = require('../models/message.js');
 const Reaction = require('../models/reaction.js');
 const User = require('../models/user.js');
@@ -55,15 +54,17 @@ route.get('/questions', async (req, res) => {
   const result = messages.map((message, index) => {
     return { ...message._doc, ...promiseArr[index] };
   });
-  // let mes = await messages[0].populate('slack_user');
-  // mes = await messages[0].slack_user;
-  // console.log(mes);
   res.send(result);
 });
-(async () => {
-  // let mes = await Message.findOne({ _id: '62eba86c3ecc1b3d836c7eba' });
-  // console.log(await mes.any_reactions);
-  // console.log(await mes.good_reaction);
-  // console.log(await mes.getAllReactionOfThread());
-})();
+route.get('/question-thread/:message_id', async (req, res) => {
+  const { message_id } = req.params;
+  const mes = await Message.getFullThread(message_id);
+  res.send(mes);
+});
+// (async () => {
+// let mes = await Message.findOne({ _id: '62eba86c3ecc1b3d836c7eba' });
+// console.log(await mes.any_reactions);
+// console.log(await mes.good_reaction);
+// console.log(await mes.getAllReactionOfThread());
+// })();
 module.exports = route;

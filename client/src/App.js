@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from '@mui/material';
 import { deepOrange, green, lightBlue, teal, lime } from '@mui/material/colors';
 import Students from 'pages/Students';
 import Questions from 'pages/Questions';
+import Question from 'pages/Question';
 
 const customTheme = createTheme({
   palette: {
@@ -28,6 +29,8 @@ function App() {
           <Routes>
             <Route path='/' element={<Students />} />
             <Route path='/questions' element={<Questions />} />
+            <Route path='/questions/:id' element={<Question />} />
+            <Route path='/students/:id' element={<h2>Hola</h2>} />
             <Route path='*' element={<Navigate to='/' replace />} />
           </Routes>
         </BrowserRouter>

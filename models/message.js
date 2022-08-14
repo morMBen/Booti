@@ -60,6 +60,27 @@ messageSchema.methods.getAllReactionOfThread = async function () {
   return { thread_good_reactions: good, thread_any_reactions: all };
 };
 
+messageSchema.statics.getFullThread = async function (message_id) {
+  const mes = await Message.findOne({ _id: message_id });
+  let ans = await mes.populate('answers_to_question');
+  ans = await mes.answers_to_question;
+
+  const response = { ...mes._doc };
+
+  response.good_reaction = await mes.good_reaction;
+  response.any_reactions = await mes.any_reactions;
+
+  const answers_to_question_arr = [];
+  for (let i = 0; i < response.answers_to_question.length; i++) {
+    const a = { ...mes.answers_to_question[i]._doc };
+    a.good_reaction = await mes.answers_to_question[i].good_reaction;
+    a.any_reactions = await mes.answers_to_question[i].any_reactions;
+    answers_to_question_arr.push(a);
+  }
+  response.answers_to_question = answers_to_question_arr;
+  return response;
+};
+
 messageSchema.set('toObject', { virtuals: true });
 messageSchema.set('toJSON', { virtuals: true });
 
