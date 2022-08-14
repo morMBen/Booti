@@ -118,12 +118,13 @@ function Question() {
   };
   useEffect(() => {
     const getData = async () => {
-      const { data } = await API.get(`/question-thread/${isUserRoute.id}`);
-      setQuestionData(data);
-      console.log(data);
+      if (isUserRoute) {
+        const { data } = await API.get(`/question-thread/${isUserRoute.id}`);
+        setQuestionData(data);
+        console.log(data);
+      }
     };
     getData();
-    // console.log(data);
   }, [isUserRoute]);
   return (
     <>
