@@ -60,7 +60,7 @@ route.get('/question-thread/:message_id', async (req, res) => {
   try {
     const { message_id } = req.params;
     const mes = await Message.getFullThread(message_id);
-    res.json(mes);
+    res.send(mes);
   } catch (e) {
     res.send(e.message);
   }

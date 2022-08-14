@@ -118,7 +118,7 @@ function Question() {
   };
   useEffect(() => {
     const getData = async () => {
-      const { data } = await API.get(`question-thread/${isUserRoute.id}`);
+      const { data } = await API.get(`/question-thread/${isUserRoute.id}`);
       setQuestionData(data);
       console.log(data);
     };
