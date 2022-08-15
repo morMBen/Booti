@@ -118,7 +118,8 @@ function Question() {
     );
   };
   useEffect(() => {
-    API.get(`../question-thread/${isUserRoute.id}`)
+    axios
+      .get(`..api/question-thread/${isUserRoute.id}`)
       .then(({ data }) => {
         setQuestionData(data);
         console.log(isUserRoute);
