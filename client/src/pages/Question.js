@@ -117,12 +117,12 @@ function Question() {
     );
   };
   useEffect(() => {
-    API.get(`question-thread/${isUserRoute.id}`)
-      .then(({ data }) => {
-        setQuestionData(data);
-        console.log(data);
-      })
-      .catch((e) => console.log(e));
+    console.log(isUserRoute);
+    // API.get(`question-thread/${isUserRoute.id}`)
+    //   .then(({ data }) => {
+    //     setQuestionData(data);
+    //   })
+    //   .catch((e) => console.log(e));
   }, [isUserRoute]);
   return (
     <>
