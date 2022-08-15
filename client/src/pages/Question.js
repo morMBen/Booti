@@ -15,6 +15,7 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
+import axios from 'axios';
 function Question() {
   const [questionData, setQuestionData] = useState(null);
   const isUserRoute = useParams();
@@ -117,14 +118,13 @@ function Question() {
     );
   };
   useEffect(() => {
-    console.log(isUserRoute);
-    console.log(API());
-
-    // API.get(`question-thread/${isUserRoute.id}`)
-    //   .then(({ data }) => {
-    //     setQuestionData(data);
-    //   })
-    //   .catch((e) => console.log(e));
+    axios
+      .get(`api/question-thread/${isUserRoute.id}`)
+      .then(({ data }) => {
+        setQuestionData(data);
+        console.log(isUserRoute);
+      })
+      .catch((e) => console.log(e));
   }, [isUserRoute]);
   return (
     <>
