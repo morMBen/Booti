@@ -28,8 +28,8 @@ function App() {
           <Header />
           <Routes>
             <Route path='/' element={<Students />} />
-            <Route path='/questions' element={<Questions />} />
             <Route path='/questions/:id' element={<Question />} />
+            <Route path='/questions' element={<Questions />} />
             <Route path='/students/:id' element={<h2>Hola</h2>} />
             <Route path='*' element={<Navigate to='/' replace />} />
           </Routes>
