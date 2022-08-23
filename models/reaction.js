@@ -28,7 +28,7 @@ const reactionSchema = new mongoose.Schema({
 });
 
 reactionSchema.pre('deleteOne', async (next) => {
-  console.log('im here');
+  console.log('im here', this);
   if (this.type === 'white_check_mark') {
     let mes = await this.populate('message');
     mes = await mes.message;
