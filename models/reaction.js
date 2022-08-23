@@ -34,7 +34,7 @@ reactionSchema.pre('remove', async function (next) {
     let mes = await this.populate('message');
     mes = await mes.message;
     console.log('mes →', mes);
-    if (mes.solved_user.equals(this.receiver)) {
+    if (mes.solved_user.toString() === this.receiver.toString()) {
       console.log('im good');
     }
   }
