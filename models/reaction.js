@@ -36,9 +36,9 @@ reactionSchema.pre('remove', async function (next) {
     mes = await mes.populate('slack_parent');
     mes = await mes.slack_parent;
     console.log('mes →', mes);
-    // if (mes.solved_user.toString() === this.receiver.toString()) {
-    //   console.log('im good');
-    // }
+    if (mes.solved_user.toString() === this.receiver.toString()) {
+      console.log('im good');
+    }
   }
   next();
 });
