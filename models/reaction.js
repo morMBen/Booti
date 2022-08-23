@@ -33,8 +33,8 @@ reactionSchema.pre('remove', async function (next) {
   if (this.type === 'white_check_mark') {
     let mes = await this.populate('message');
     mes = await mes.message;
-    let mes2 = await this.populate('slack_parent');
-    mes2 = await mes.slack_parent;
+    mes = await mes.populate('slack_parent');
+    mes = await mes.slack_parent;
     console.log('mes →', mes);
     // if (mes.solved_user.toString() === this.receiver.toString()) {
     //   console.log('im good');
