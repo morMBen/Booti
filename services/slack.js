@@ -42,7 +42,6 @@ app.event('reaction_removed', async ({ event, client }) => {
       slack_message_id: event.item.ts,
       type: event.reaction,
     });
-    // console.log('reaction →', reaction);
   } catch (e) {
     console.error(e);
   }
@@ -83,11 +82,6 @@ app.event('reaction_added', async ({ event, client }) => {
       receiver,
       message,
     });
-
-    // console.log(receiver);
-    // console.log(receiver);
-    // receiver.scores.questions = 2;
-    // await receiver.save();
   } catch (e) {
     console.error(e);
   }

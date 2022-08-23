@@ -90,4 +90,10 @@ messageSchema.set('toJSON', { virtuals: true });
 
 const Message = mongoose.model('Message', messageSchema);
 
+Message.pre('remove', async (next) => {
+  await Reaction.deleteMany({ message: this._id });
+  await Message.deleteMany({ slack_parent: this._id });
+  next();
+});
+
 module.exports = Message;
