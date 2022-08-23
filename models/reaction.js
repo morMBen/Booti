@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Message = require('./message');
 require('./message');
 
 const reactionSchema = new mongoose.Schema({
@@ -24,6 +25,16 @@ const reactionSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Message',
   },
+});
+
+reactionSchema.pre('removed', async (next) => {
+  if (this.type === 'white_check_mark') {
+    let mes = await this.populate('message');
+    mes = await mes.message;
+    if (mes.solved_user === this.parent_user) {
+      console.log('im good');
+    }
+  }
 });
 
 const Reaction = mongoose.model('Reaction', reactionSchema);
