@@ -27,7 +27,7 @@ const reactionSchema = new mongoose.Schema({
   },
 });
 
-reactionSchema.pre('deleteOne', async function (next) {
+reactionSchema.pre('remove', async function (next) {
   const re = this;
   console.log('im here', re);
   if (this.type === 'white_check_mark') {
