@@ -32,8 +32,8 @@ reactionSchema.pre('deleteOne', async function (next) {
   if (this.type === 'white_check_mark') {
     let mes = await this.populate('message');
     mes = await mes.message;
-    // console.log(mes);
-    if (mes.solved_user === this.parent_user) {
+    console.log('mes →', mes);
+    if (mes.solved_user === this.receiver) {
       console.log('im good');
     }
   }
