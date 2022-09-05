@@ -6,7 +6,11 @@ const Message = require('../models/message.js');
 const User = require('../models/user.js');
 const Reaction = require('../models/reaction.js');
 const { ConsoleLogger } = require('@slack/logger');
-observeBootcamp(JSON.parse(process.env.BOOTCAMPS)[0]);
+
+const bootcampsArr = JSON.parse(process.env.BOOTCAMPS);
+bootcampsArr.forEach((bootcamp) => {
+  observeBootcamp(bootcamp);
+});
 
 function observeBootcamp(bootcampObj) {
   const app = new App({
