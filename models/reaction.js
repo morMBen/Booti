@@ -3,6 +3,7 @@ const Message = require('./message');
 require('./message');
 
 const reactionSchema = new mongoose.Schema({
+  bootcamp: 'string',
   reaction_id: 'string', //* event_ts
   type: 'string', //* reaction
   // solved_user: 'boolean',

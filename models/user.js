@@ -4,12 +4,13 @@ const Message = require('./message');
 const Reaction = require('./reaction');
 const calculateRating = require('../utils/calculateRating');
 const userSchema = new mongoose.Schema({
+  bootcamp: 'string',
   slack_display_name: 'string',
   slack_user_id: 'string',
   image: 'string',
 });
 
-userSchema.statics.setUser = async (id, app) => {
+userSchema.statics.setUser = async (id, app, bootcampName) => {
   try {
     let user = await User.findOne({ slack_user_id: id });
     const userData = await app.client.users.info({ token: process.env.TOKEN, user: id });
@@ -20,7 +21,12 @@ userSchema.statics.setUser = async (id, app) => {
     } = userData;
 
     if (!user) {
-      user = new User({ slack_display_name: display_name, slack_user_id: id, image: image_48 });
+      user = new User({
+        slack_display_name: display_name,
+        slack_user_id: id,
+        image: image_48,
+        bootcamp: bootcampName,
+      });
       await user.save();
     } else {
       await user.updateOne({

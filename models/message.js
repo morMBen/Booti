@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Reaction = require('./reaction');
 
 const messageSchema = new mongoose.Schema({
+  bootcamp: 'string',
   text: 'string',
   slack_channel_id: 'string',
   slack_message_id: 'string',
