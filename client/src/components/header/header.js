@@ -12,12 +12,13 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
+import Link from '@mui/material/Link';
 
 import QuizIcon from '@mui/icons-material/Quiz';
 
-const pages = ['תלמידים', 'שאלות', 'תשובות'];
+const pages = ['תלמידים', 'שאלות'];
 const pagesPath = ['/', 'questions', 'answers'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
   let navigate = useNavigate();
@@ -76,7 +77,6 @@ const ResponsiveAppBar = () => {
                   key={page}
                   onClick={() => {
                     handleCloseNavMenu();
-                    console.log(index);
                     navigate(pagesPath[index]);
                   }}
                 >
@@ -109,10 +109,13 @@ const ResponsiveAppBar = () => {
             /> */}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pages.map((page, index) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => {
+                  handleCloseNavMenu();
+                  navigate(pagesPath[index]);
+                }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
@@ -121,11 +124,13 @@ const ResponsiveAppBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <img
-              style={{ maxHeight: '40px' }}
-              src='https://static.wixstatic.com/media/5bd04f_9fec7b63820f4b5ca236ce4d9e08eb3a~mv2.png/v1/fill/w_164,h_60,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Appleseeds_LOGO_3_Hebrew_4x.png'
-              alt='white appleseeds logo'
-            />
+            <Link href={'/'}>
+              <img
+                style={{ maxHeight: '40px' }}
+                src='https://static.wixstatic.com/media/5bd04f_9fec7b63820f4b5ca236ce4d9e08eb3a~mv2.png/v1/fill/w_164,h_60,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Appleseeds_LOGO_3_Hebrew_4x.png'
+                alt='white appleseeds logo'
+              />
+            </Link>
             {/* <Tooltip title='Open settings'>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt='Remy Sharp' src='/static/images/avatar/2.jpg' />

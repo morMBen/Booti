@@ -8,6 +8,7 @@ const Reaction = require('../models/reaction.js');
 const { ConsoleLogger } = require('@slack/logger');
 
 const bootcampsArr = JSON.parse(process.env.BOOTCAMPS);
+
 bootcampsArr.forEach((bootcamp) => {
   observeBootcamp(bootcamp);
 });
