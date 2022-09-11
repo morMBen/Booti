@@ -20,6 +20,7 @@ function observeBootcamp(bootcampObj) {
   });
 
   app.message('', async ({ message, say }) => {
+    console.log('my message → ', message);
     try {
       const user = await User.setUser(message.user, app, bootcampObj.NAME);
       const oldMessage = await Message.findOne({ slack_message_id: message.thread_ts });
@@ -45,7 +46,7 @@ function observeBootcamp(bootcampObj) {
   });
 
   app.event('message', async ({ event, client }) => {
-    console.log('my message → ', event);
+    console.log('my message delete → ', event);
   });
   app.event('reaction_removed', async ({ event, client }) => {
     try {
