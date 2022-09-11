@@ -17,7 +17,7 @@ import Link from '@mui/material/Link';
 import QuizIcon from '@mui/icons-material/Quiz';
 
 const pages = ['תלמידים', 'שאלות'];
-const pagesPath = ['/bc7', 'bc7/questions', 'answers'];
+const pagesPath = ['/', '/questions', 'answers'];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
@@ -124,7 +124,7 @@ const ResponsiveAppBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Link href={'/bc7'}>
+            <Link href={'/'}>
               <img
                 style={{ maxHeight: '40px' }}
                 src='https://static.wixstatic.com/media/5bd04f_9fec7b63820f4b5ca236ce4d9e08eb3a~mv2.png/v1/fill/w_164,h_60,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Appleseeds_LOGO_3_Hebrew_4x.png'

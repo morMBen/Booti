@@ -27,10 +27,10 @@ function App() {
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route path='/bc7' element={<Students />} />
-            <Route path='/bc7/questions/:id' element={<Question />} />
-            <Route path='/bc7/questions' element={<Questions />} />
-            <Route path='/bc7/students/:id' element={<h2>Hola</h2>} />
+            <Route path='/' element={<Students />} />
+            <Route path='/questions/:id' element={<Question />} />
+            <Route path='/questions' element={<Questions />} />
+            <Route path='/students/:id' element={<h2>Hola</h2>} />
             {/* <Route path='*' element={<Navigate to='/' replace />} /> */}
             <Route path='*' element={<h1>Under Connection</h1>} />
           </Routes>
