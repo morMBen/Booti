@@ -7,7 +7,7 @@ const route = express.Router();
 
 route.get('/users', async (req, res) => {
   try {
-    const allUsers = User.find({}, async function (err, users) {
+    const allUsers = User.find({ bootcamp: 'bootcamp7' }, async function (err, users) {
       var usersArr = [];
 
       for (let i = 0; i < users.length; i++) {
@@ -40,6 +40,7 @@ route.get('/reset', async (req, res) => {
 });
 route.get('/questions', async (req, res) => {
   let messages = await Message.find({
+    bootcamp: 'bootcamp7',
     slack_parent: null,
   });
   let promiseArr = [];
