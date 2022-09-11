@@ -46,9 +46,8 @@ function observeBootcamp(bootcampObj) {
   });
 
   app.event('message', async ({ event, client }) => {
-    console.log('my message delete → ', event);
     if (event.subtype && event.subtype === 'message_deleted') {
-      const mes = await Message.findOne({ slack_message_id: event.previous_message.ts });
+      let mes = await Message.findOne({ slack_message_id: event.previous_message.ts });
       mes = await mes.remove();
     }
   });
