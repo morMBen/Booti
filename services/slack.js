@@ -45,9 +45,9 @@ function observeBootcamp(bootcampObj) {
     }
   });
 
-  // app.event('message', async ({ event, client }) => {
-  //   console.log('my message delete → ', event);
-  // });
+  app.event('message', async ({ event, client }) => {
+    console.log('my message delete → ', event);
+  });
   app.event('reaction_removed', async ({ event, client }) => {
     try {
       // console.log('event →', event);
