@@ -22,7 +22,7 @@ function observeBootcamp(bootcampObj, index) {
   app.message('', async ({ message, say }) => {
     console.log('my message → ', message);
     try {
-      const user = await User.setUser(message.user, app, bootcampObj.NAME);
+      const user = await User.setUser(message.user, app, bootcampObj.NAME, bootcampObj.TOKEN);
 
       const oldMessage = await Message.findOne({ slack_message_id: message.thread_ts });
       const mes = await Message.create({
@@ -79,8 +79,13 @@ function observeBootcamp(bootcampObj, index) {
 
   app.event('reaction_added', async ({ event, client }) => {
     try {
-      const sender = await User.setUser(event.user, app, bootcampObj.NAME);
-      const receiver = await User.setUser(event.item_user, app, bootcampObj.NAME);
+      const sender = await User.setUser(event.user, app, bootcampObj.NAME, bootcampObj.TOKEN);
+      const receiver = await User.setUser(
+        event.item_user,
+        app,
+        bootcampObj.NAME,
+        bootcampObj.TOKEN
+      );
       const message = await Message.findOne({ slack_message_id: event.item.ts });
       const reaction_id = event.event_ts;
       const parent_user = await getParentUser(message);
