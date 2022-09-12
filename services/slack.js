@@ -27,12 +27,12 @@ function observeBootcamp(bootcampObj, index) {
         token: bootcampObj.TOKEN,
         channel: message.channel,
       });
-      console.log('My channel → ', channelData.channel.name);
+      // console.log('My channel → ', channelData.channel.name);
       const oldMessage = await Message.findOne({ slack_message_id: message.thread_ts });
       const mes = await Message.create({
         bootcamp: bootcampObj.NAME,
         text: message.text,
-        slack_channel_id: message.channel,
+        slack_channel_id: channelData.channel.name,
         slack_message_id: message.event_ts, //!! check letter
         slack_user: user._id,
         slack_parent: (oldMessage && oldMessage._id) || null,
