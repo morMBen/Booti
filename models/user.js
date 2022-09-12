@@ -18,13 +18,14 @@ userSchema.statics.setUser = async (id, app, bootcampName, token) => {
     console.log('my user → ', userData);
     const {
       user: {
-        profile: { display_name, image_48, real_name },
+        real_name,
+        profile: { display_name, image_48 },
       },
     } = userData;
 
     if (!user) {
       user = new User({
-        slack_display_name: real_name,
+        slack_display_name: display_name !== '' ? display_name : real_name,
         slack_user_id: id,
         image: image_48,
         bootcamp: bootcampName,
