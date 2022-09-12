@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
 userSchema.statics.setUser = async (id, app, bootcampName) => {
   try {
     let user = await User.findOne({ slack_user_id: id });
+    console.log('my user → ', user);
     const userData = await app.client.users.info({ token: process.env.TOKEN, user: id });
     const {
       user: {
@@ -24,6 +25,7 @@ userSchema.statics.setUser = async (id, app, bootcampName) => {
       user = new User({
         slack_display_name: display_name,
         slack_user_id: id,
+          console.log('my user → ', user);
         image: image_48,
         bootcamp: bootcampName,
       });
