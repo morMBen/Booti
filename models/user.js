@@ -14,7 +14,7 @@ userSchema.statics.setUser = async (id, app, bootcampName) => {
   try {
     let user = await User.findOne({ slack_user_id: id });
     const userData = await app.client.users.info({ token: process.env.TOKEN, user: id });
-    console.log('my user → ', userData);
+    console.log('my user → ', id);
     const {
       user: {
         profile: { display_name, image_48 },
