@@ -23,6 +23,7 @@ function observeBootcamp(bootcampObj, index) {
     console.log('my message → ', message);
     try {
       const user = await User.setUser(message.user, app, bootcampObj.NAME);
+      console.log('my user → ', user);
       const oldMessage = await Message.findOne({ slack_message_id: message.thread_ts });
       const mes = await Message.create({
         bootcamp: bootcampObj.NAME,
