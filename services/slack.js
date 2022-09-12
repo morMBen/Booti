@@ -10,10 +10,10 @@ const { ConsoleLogger } = require('@slack/logger');
 const bootcampsArr = JSON.parse(process.env.BOOTCAMPS);
 
 bootcampsArr.forEach((bootcamp, index) => {
-  observeBootcamp(bootcamp);
+  observeBootcamp(bootcamp, index);
 });
 
-function observeBootcamp(bootcampObj) {
+function observeBootcamp(bootcampObj, index) {
   const app = new App({
     token: bootcampObj.TOKEN,
     signingSecret: bootcampObj.SIGNIN_SECRET,
