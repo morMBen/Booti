@@ -9,7 +9,7 @@ const { ConsoleLogger } = require('@slack/logger');
 
 const bootcampsArr = JSON.parse(process.env.BOOTCAMPS);
 
-bootcampsArr.forEach((bootcamp) => {
+bootcampsArr.forEach((bootcamp, index) => {
   observeBootcamp(bootcamp);
 });
 
@@ -106,7 +106,7 @@ function observeBootcamp(bootcampObj) {
   });
 
   (async () => {
-    await app.start(5000);
+    await app.start(5000 - index);
     console.log('* bolt app is running!');
   })();
 }
