@@ -107,6 +107,6 @@ function observeBootcamp(bootcampObj, index) {
 
   (async () => {
     await app.start(5000 - index);
-    console.log('* bolt app is running!');
+    console.log(`* bolt app is running! on port ${5000 - index}`);
   })();
 }
